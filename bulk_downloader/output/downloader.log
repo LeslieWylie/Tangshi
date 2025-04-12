@@ -1,0 +1,147 @@
+2025-04-12 03:40:06,911 - INFO - 日志系统初始化完成
+2025-04-12 03:40:13,089 - INFO - WebDriver初始化成功
+2025-04-12 03:40:13,089 - INFO - 打开网页: http://dh.g.sjuku.top
+2025-04-12 03:40:16,141 - WARNING - 未提供登录信息，将尝试不登录直接访问
+2025-04-12 03:40:16,147 - INFO - 导航到搜索页面: http://dh.g.sjuku.top/spring/front/search
+2025-04-12 03:40:19,290 - ERROR - 查找元素失败 '#ikeyword': Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=135.0.7049.85)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6485E5335+78597]
+	GetHandleVerifier [0x00007FF6485E5390+78688]
+	(No symbol) [0x00007FF6483991AA]
+	(No symbol) [0x00007FF648384EF5]
+	(No symbol) [0x00007FF6483A9F04]
+	(No symbol) [0x00007FF64841ED0F]
+	(No symbol) [0x00007FF64843EBB2]
+	(No symbol) [0x00007FF648416EC3]
+	(No symbol) [0x00007FF6483E03F8]
+	(No symbol) [0x00007FF6483E1163]
+	GetHandleVerifier [0x00007FF64888EEED+2870973]
+	GetHandleVerifier [0x00007FF648889698+2848360]
+	GetHandleVerifier [0x00007FF6488A6973+2967875]
+	GetHandleVerifier [0x00007FF64860017A+188746]
+	GetHandleVerifier [0x00007FF64860845F+222255]
+	GetHandleVerifier [0x00007FF6485ED2B4+111236]
+	GetHandleVerifier [0x00007FF6485ED462+111666]
+	GetHandleVerifier [0x00007FF6485D3589+5465]
+	BaseThreadInitThunk [0x00007FFEF36FE8D7+23]
+	RtlUserThreadStart [0x00007FFEF47914FC+44]
+
+2025-04-12 03:40:19,291 - ERROR - 搜索失败，终止下载
+2025-04-12 03:40:19,292 - INFO - 下载过程结束
+2025-04-12 03:40:19,292 - INFO - 爬虫任务完成
+2025-04-12 03:40:30,214 - INFO - 日志系统初始化完成
+2025-04-12 03:40:31,788 - INFO - WebDriver初始化成功
+2025-04-12 03:40:31,789 - INFO - 打开网页: http://dh.g.sjuku.top
+2025-04-12 03:40:34,718 - WARNING - 未提供登录信息，将尝试不登录直接访问
+2025-04-12 03:40:34,722 - INFO - 导航到搜索页面: http://dh.g.sjuku.top/spring/front/search
+2025-04-12 03:40:45,192 - ERROR - 查找元素失败 '#ikeyword': Message: 
+Stacktrace:
+	GetHandleVerifier [0x00007FF6485E5335+78597]
+	GetHandleVerifier [0x00007FF6485E5390+78688]
+	(No symbol) [0x00007FF6483991AA]
+	(No symbol) [0x00007FF6483EF149]
+	(No symbol) [0x00007FF6483EF3FC]
+	(No symbol) [0x00007FF648442467]
+	(No symbol) [0x00007FF64841712F]
+	(No symbol) [0x00007FF64843F2BB]
+	(No symbol) [0x00007FF648416EC3]
+	(No symbol) [0x00007FF6483E03F8]
+	(No symbol) [0x00007FF6483E1163]
+	GetHandleVerifier [0x00007FF64888EEED+2870973]
+	GetHandleVerifier [0x00007FF648889698+2848360]
+	GetHandleVerifier [0x00007FF6488A6973+2967875]
+	GetHandleVerifier [0x00007FF64860017A+188746]
+	GetHandleVerifier [0x00007FF64860845F+222255]
+	GetHandleVerifier [0x00007FF6485ED2B4+111236]
+	GetHandleVerifier [0x00007FF6485ED462+111666]
+	GetHandleVerifier [0x00007FF6485D3589+5465]
+	BaseThreadInitThunk [0x00007FFEF36FE8D7+23]
+	RtlUserThreadStart [0x00007FFEF47914FC+44]
+
+2025-04-12 03:40:45,193 - ERROR - 搜索失败，终止下载
+2025-04-12 03:40:45,193 - INFO - 下载过程结束
+2025-04-12 03:40:45,193 - INFO - 爬虫任务完成
+2025-04-12 03:44:31,073 - INFO - 日志系统初始化完成
+2025-04-12 03:44:32,788 - INFO - WebDriver初始化成功
+2025-04-12 03:44:32,789 - INFO - 打开网页: http://dh.g.sjuku.top
+2025-04-12 03:44:41,943 - ERROR - 下载过程发生错误: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=135.0.7049.85)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7F8495335+78597]
+	GetHandleVerifier [0x00007FF7F8495390+78688]
+	(No symbol) [0x00007FF7F82491AA]
+	(No symbol) [0x00007FF7F8234EF5]
+	(No symbol) [0x00007FF7F8259F04]
+	(No symbol) [0x00007FF7F82CED0F]
+	(No symbol) [0x00007FF7F82EEBB2]
+	(No symbol) [0x00007FF7F82C6EC3]
+	(No symbol) [0x00007FF7F82903F8]
+	(No symbol) [0x00007FF7F8291163]
+	GetHandleVerifier [0x00007FF7F873EEED+2870973]
+	GetHandleVerifier [0x00007FF7F8739698+2848360]
+	GetHandleVerifier [0x00007FF7F8756973+2967875]
+	GetHandleVerifier [0x00007FF7F84B017A+188746]
+	GetHandleVerifier [0x00007FF7F84B845F+222255]
+	GetHandleVerifier [0x00007FF7F849D2B4+111236]
+	GetHandleVerifier [0x00007FF7F849D462+111666]
+	GetHandleVerifier [0x00007FF7F8483589+5465]
+	BaseThreadInitThunk [0x00007FFEF36FE8D7+23]
+	RtlUserThreadStart [0x00007FFEF47914FC+44]
+
+2025-04-12 03:44:41,944 - INFO - 下载过程结束
+2025-04-12 03:44:44,072 - INFO - 浏览器已关闭
+2025-04-12 03:44:44,073 - INFO - 爬虫任务完成
+2025-04-12 03:46:05,729 - INFO - 日志系统初始化完成
+2025-04-12 03:46:07,345 - INFO - WebDriver初始化成功
+2025-04-12 03:46:07,345 - INFO - 打开网页: http://dh.g.sjuku.top
+2025-04-12 03:46:13,284 - ERROR - 添加cookie失败: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=135.0.7049.85)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7F8495335+78597]
+	GetHandleVerifier [0x00007FF7F8495390+78688]
+	(No symbol) [0x00007FF7F82491AA]
+	(No symbol) [0x00007FF7F8234EF5]
+	(No symbol) [0x00007FF7F8259F04]
+	(No symbol) [0x00007FF7F82CED0F]
+	(No symbol) [0x00007FF7F82EEBB2]
+	(No symbol) [0x00007FF7F82C6EC3]
+	(No symbol) [0x00007FF7F82903F8]
+	(No symbol) [0x00007FF7F8291163]
+	GetHandleVerifier [0x00007FF7F873EEED+2870973]
+	GetHandleVerifier [0x00007FF7F8739698+2848360]
+	GetHandleVerifier [0x00007FF7F8756973+2967875]
+	GetHandleVerifier [0x00007FF7F84B017A+188746]
+	GetHandleVerifier [0x00007FF7F84B845F+222255]
+	GetHandleVerifier [0x00007FF7F849D2B4+111236]
+	GetHandleVerifier [0x00007FF7F849D462+111666]
+	GetHandleVerifier [0x00007FF7F8483589+5465]
+	BaseThreadInitThunk [0x00007FFEF36FE8D7+23]
+	RtlUserThreadStart [0x00007FFEF47914FC+44]
+
+2025-04-12 03:46:13,371 - ERROR - 下载过程发生错误: Message: invalid session id
+Stacktrace:
+	GetHandleVerifier [0x00007FF7F8495335+78597]
+	GetHandleVerifier [0x00007FF7F8495390+78688]
+	(No symbol) [0x00007FF7F8248FDC]
+	(No symbol) [0x00007FF7F828F51F]
+	(No symbol) [0x00007FF7F82C6FB2]
+	(No symbol) [0x00007FF7F82C19CC]
+	(No symbol) [0x00007FF7F82C0AA9]
+	(No symbol) [0x00007FF7F8215AB5]
+	GetHandleVerifier [0x00007FF7F873EEED+2870973]
+	GetHandleVerifier [0x00007FF7F8739698+2848360]
+	GetHandleVerifier [0x00007FF7F8756973+2967875]
+	GetHandleVerifier [0x00007FF7F84B017A+188746]
+	GetHandleVerifier [0x00007FF7F84B845F+222255]
+	(No symbol) [0x00007FF7F8214B28]
+	GetHandleVerifier [0x00007FF7F8840668+3925560]
+	BaseThreadInitThunk [0x00007FFEF36FE8D7+23]
+	RtlUserThreadStart [0x00007FFEF47914FC+44]
+
+2025-04-12 03:46:13,374 - INFO - 下载过程结束
+2025-04-12 03:46:15,410 - INFO - 浏览器已关闭
+2025-04-12 03:46:15,410 - INFO - 爬虫任务完成

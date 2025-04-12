@@ -1,0 +1,6482 @@
+< !DOCTYPE
+HTML >
+< html >
+< head >
+< title > 全文檢索結果頁 < / title >
+< meta
+charset = "utf-8" >
+< meta
+http - equiv = "X-UA-Compatible"
+content = "IE=edge" >
+< meta
+name = "viewport"
+content = "width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" / >
+
+< style
+type = "text/css" >
+
+body
+{
+    font: 100 % / 1.4 Verdana, Arial, Helvetica, sans - serif;
+background - color:  # 4E5869;
+margin: 0;
+padding: 0;
+color:  # 000;
+}
+
+/ *~~ 元素 / 标签选择器
+~~ * /
+ul, ol, dl
+{ / * 由于浏览器之间的差异，最佳做法是在列表中将填充和边距都设置为零。为了保持一致，您可以在此处指定需要的数值，也可以在列表所包含的列表项（LI、DT
+和
+DD）中指定需要的数值。请注意，除非编写一个更为具体的选择器，否则您在此处进行的设置将会层叠到.nav
+列表。 * /
+padding: 0;
+margin: 0;
+}
+li
+{
+    list - style - type: none;
+}
+h1, h2, h3, h4, h5, h6, p
+{
+    margin - top: 0; / *删除上边距可以解决边距会超出其包含的
+div
+的问题。剩余的下边距可以使
+div
+与后面的任何元素保持一定距离。 * /
+padding - right: 15
+px;
+padding - left: 15
+px; / *向
+div
+内的元素侧边（而不是
+div
+自身）添加填充可避免使用任何方框模型数学。此外，也可将具有侧边填充的嵌套
+div
+用作替代方法。 * /
+}
+a
+img
+{ / * 此选择器将删除某些浏览器中显示在图像周围的默认蓝色边框（当该图像包含在链接中时） * /
+border: none;
+}
+
+/ *~~ 站点链接的样式必须保持此顺序，包括用于创建悬停效果的选择器组在内。 ~~ * /
+a: link
+{
+    color:  # 414958;
+        text - decoration: none; / *除非将链接设置成极为独特的外观样式，否则最好提供下划线，以便可从视觉上快速识别 * /
+}
+a: visited
+{
+    color:  # 4E5869;
+        text - decoration: none;
+}
+a: hover, a: active, a: focus
+{ / * 此组选择器将为键盘导航者提供与鼠标使用者相同的悬停体验。 * /
+text - decoration: none;
+}
+
+/ *~~ 此容器包含所有其它
+div，并依百分比设定其宽度
+~~ * /
+.container
+{
+    width: 80 %;
+max - width: 1000
+px; / *可能需要最大宽度，以防止此布局在大型显示器上过宽。这将使行长度更便于阅读。IE6
+不遵循此声明。 * /
+min - width: 780
+px; / *可能需要最小宽度，以防止此布局过窄。这将使侧面列中的行长度更便于阅读。IE6
+不遵循此声明。 * /
+background - color:  # FFF;
+margin: 0
+auto; / *侧边的自动值与宽度结合使用，可以将布局居中对齐。如果将.container
+宽度设置为
+100 %，则不需要此设置。 * /
+overflow: hidden; / *此声明将使.container
+清除其包含的所有浮动列。 * /
+
+}
+.snjs
+a
+{text - decoration: none;
+cursor: pointer;}
+.snjs
+a: link
+{
+    color:  # 900;
+}
+.snjs
+a: visited
+{
+    color:  # 900;
+
+}
+.snjs
+a: hover
+{
+    color:  # F00;
+}
+.snjs
+a: active
+{
+    color:  # 900;
+}
+
+.container_head
+{
+
+/ * 可能需要最大宽度，以防止此布局在大型显示器上过宽。这将使行长度更便于阅读。IE6
+不遵循此声明。 * /
+background - color:  # FFF;
+margin: 0
+auto; / *侧边的自动值与宽度结合使用，可以将布局居中对齐。如果将.container
+宽度设置为
+100 %，则不需要此设置。 * /
+overflow: hidden; / *此声明将使.container
+清除其包含的所有浮动列。 * /
+
+}
+
+.sidebar1
+{
+    float: left;
+width: 20 %;
+background - color:  # 93A5C4;
+padding - bottom: 10
+px;
+}
+.content
+{
+    padding: 10px 0;
+width: 60 %;
+float: left;
+}
+.sidebar2
+{
+    float: left;
+width: 20 %;
+background - color:  # 93A5C4;
+padding: 10
+px
+0;
+}
+
+/ *~~ 此分组的选择器为.content
+区域中的列表提供了空间
+~~ * /
+.content
+ul,.content
+ol
+{
+    padding: 0 15px 15px
+    40px; / *此填充反映上述标题和段落规则中的右填充。填充放置于下方可用于间隔列表中其它元素，置于左侧可用于创建缩进。您可以根据需要进行调整。 * /
+}
+
+/ *~~ 其它浮动 / 清除类
+~~ * /
+.fltrt
+{ / * 此类可用于在页面中使元素向右浮动。浮动元素必须位于其在页面上的相邻元素之前。 * /
+float: right;
+margin - left: 8
+px;
+}
+.fltlft
+{ / * 此类可用于在页面中使元素向左浮动。浮动元素必须位于其在页面上的相邻元素之前。 * /
+float: left;
+margin - right: 8
+px;
+}
+.clearfloat
+{ / * 如果从.container
+中删除了
+overflow: hidden，则可以将此类放置在 < br / > 或空
+div
+中，作为  # container 内最后一个浮动 div 之后的最终元素 */
+clear: both;
+height: 0;
+font - size: 1
+px;
+line - height: 0
+px;
+}
+
+
+# head{
+
+height: 126
+px;
+width: 90 %;
+min - width: 950
+px;
+text - align: center;
+margin - left: auto;
+margin - right: auto;
+
+}
+
+# head_table{
+
+height: 126
+px;
+width: 90 %;
+min - width: 950
+px;
+text - align: center;
+margin - left: auto;
+margin - right: auto;
+
+}
+
+
+# logoPan{
+height: 126
+px;
+width: 162
+px;
+display: table - cell;
+}
+# titlePan{
+height: 126
+px;
+width: 792
+px;
+display: inline;
+text - align: center;
+display: table - cell;
+
+}
+
+.checkbox1
+{
+    font - size: 15px;
+
+}
+
+.checkbox1
+input
+{
+    height: 18px;
+
+}
+
+.img_box
+{
+    width: 150px;
+height: 220
+px;
+margin: 0
+auto; / *div居中 * /
+         / *
+         background - color:  # CCC;
+* /
+
+border:  # 000 0px solid;
+text - align:center;
+padding - top: 9
+px;
+
+}
+.prod_label
+{
+    display: inline - block;
+margin - top: 5
+px;
+font - size: 14
+px;
+}
+
+# search_pan{
+width: 100 %;
+padding: 5
+px
+20
+px
+5
+px
+20
+px;
+height: 70
+px;
+background - color:
+# EAEAEA;
+
+}
+.s_label
+{
+    height: 30px;
+line - height: 30
+px;
+width: 60
+px;
+display: inline - block;
+}
+
+.b_label
+{
+    height: 30px;
+line - height: 30
+px;
+width: 35
+px;
+display: inline - block;
+
+}
+
+# search_pan input[type="text"]{
+height: 28
+px;
+font - size: 13
+px / 28
+px;
+padding - top: 2
+px\0;
+padding - left: 5
+px;
+
+}
+# selectPan_back{
+display: inline - block;
+height: 28
+px;
+position: relative\0;
+top: 2
+px\0;
+
+}
+# selectPan_backup select{
+width: 88
+px;
+font - size: 15
+px / 28
+px;
+height: 28
+px;
+padding: 2
+px
+0;
+
+}
+
+< / style >
+    <!-- jquery
+easyui -->
+< style
+type = "text/css" >
+       <!--
+img, a
+img
+{border: 0;}
+
+a: focus
+{outline: none;}
+a
+{outline: none;
+text - decoration: none;}
+a: active
+{outline: none;
+text - decoration: none;}
+a: link
+{outline: none;
+text - decoration: none;}
+
+.red
+{
+    color:  # FF0000;
+}
+
+# left tr{
+height: 25
+px;
+
+}
+
+.inp
+input
+{
+    height: 28px;
+padding: 0
+px;
+border: 0
+px
+solid
+gray;
+outline: none;
+}
+
+.bnjs
+{font - weight: bold;
+vertical - align: text - bottom;
+
+}
+.bnjs
+a: link
+{
+    color:  # 993300;
+        text - decoration: none;
+font - size: 16
+px;
+}
+
+.bnjs
+a: visited
+{
+    color:  # 993300;
+        text - decoration: none;
+font - size: 16
+px;
+}
+
+.bnjs
+a: active
+{
+    color:  # 993300;
+        text - decoration: none;
+font - size: 16
+px;
+}
+
+.bnjs
+a: hover
+{
+    color:  # 993300;
+        text - decoration: none;
+font - size: 16
+px;
+
+}
+
+.rc
+{
+    position: relative;
+}
+
+.g
+{
+    margin - top: 0;
+margin - bottom: 7
+px;
+}
+
+.xd
+{
+    height: 20px;
+width: 150
+px;
+font - size: 14
+px;
+}
+
+.st
+{
+    line - height: 20px;
+font - size: 14
+px;
+cursor: pointer;
+}
+.myadd
+{
+    margin - right: 55px;
+font - size: 14
+px;
+
+}
+.myadd
+a: HOVER
+{
+    color: blue;
+}
+
+.bn
+{
+    color:  # 0000FF;
+}
+
+a
+{
+    color:  # 000;
+        text - decoration: none;
+}
+
+hr
+{
+    border: 1px  # cccccc dotted;
+}
+
+.addhis
+{
+    display: inline - block;
+width: 30
+px;
+position: relative;
+bottom: 2
+px; / *position: absolute;
+right: 20
+px; * /
+}
+.addhis
+img
+{
+    height: 22px;
+cursor: pointer;
+}
+-->
+
+.g_tb
+td
+{
+    text - align: left;
+padding - left: 0
+px;
+}
+
+.libname
+{font - size: 15px;
+margin - top: 0
+px;
+display: inline - table;
+height: 15
+px;}
+
+
+# jieguo_info{ font-size: 18px;
+line - height: 30
+px;
+color:  # F00;
+font - weight: 700;
+
+}
+
+< / style >
+
+    < link
+href = "/bootstrap/css/bootstrap.min.css"
+rel = "stylesheet" >
+      < link
+href = "/media/css/buttons.css"
+rel = "stylesheet"
+type = "text/css" / >
+       < link
+href = "/media/css/bootstrap-responsive.min.css"
+rel = "stylesheet"
+type = "text/css" / >
+       < link
+href = "/css/ju_list.css"
+rel = "stylesheet"
+type = "text/css" >
+       < link
+rel = "stylesheet"
+type = "text/css"
+href = "/css/guji/searchbox.css" >
+
+       < script
+src = "/js/jquery-1.12.4.min.js" > < / script >
+                                       < script
+src = "/bootstrap/js/bootstrap.min.js" > < / script >
+                                             < script
+type = "text/javascript"
+src = "/assets/jquery-easyui-1.4.5/jquery.easyui.min.js" > < / script >
+
+                                                               <!--[ if lt
+IE
+9] >
+< script
+src = "/js/html5shiv.min.js" > < / script >
+                                   < script
+src = "/media/js/respond.min.js" > < / script >
+                                       <![endif] -->
+
+< script >
+
+  <!--跨库检索开始 -->
+
+var
+str_ok = "t1016;t1018;t2001;t1011;t1010;t882;t1013;t1012;t2002;t1014;t98;t1006;t1666;t1105;t3009;t1005;t1104;t1008;t3007;t1007;t1568;t3008;t1009;t3001;t1021;t1002;t1001;t3006;t1004;t3003;t1103;t1003;t3004;t3009;t1020;"; // 't1006;t98;t1008;t3001;t980;t1001;t1003;';
+var
+years = '所有時代'; // 页面跳转
+初始化检索框数值
+var
+user_ok = '3001;1003;1006;1008'; // 用户意愿的检索范围
+
+var
+logic_rel = "and";
+var
+logic_keyword = "新";
+var
+sec_keyword = "";
+
+< !--跨库检索结束
+addHistory
+addMultRead -->
+
+var
+libstr = "98;1;23;20;3;888;980;";
+
+function
+openReadPan(libid, name, volnum, years, textPageNum, textVerInfo, bookid, pageid, pianmu, exam)
+{
+
+if (exam != '' & & exam.length > 0)
+{
+    var
+dd = $('#p' + exam).html();
+
+dd = dd.split('<span class="red">').join('[H}');
+dd = dd.split('</span>').join('{H]');
+dd = dd.split('<SPAN class=red>').join('[H}');
+dd = dd.split('</SPAN>').join('{H]');
+// alert(dd);
+// ----------------------------- // 重新排列检索词叠加
+var
+klist = new
+Array();
+var
+p1 = 0;
+var
+p2 = 0;
+var
+v_str = '';
+var
+t1 = false;
+var
+t2 = false;
+p1 = dd.indexOf("[H}");
+if (p1 >= 0)
+{
+while (p1 >= 0){
+p2 = dd.indexOf("{H]", p1 + 3);
+if (p2 >= 0){
+v_str = dd.substring(p1 + 3, p2);
+t1 = false;
+for (var i = 0; i < klist.length; i++){
+if (v_str == klist[i].toString()){
+t1 = true;
+break;
+}
+}
+if (!t1){
+klist.push(v_str);
+}
+p1 = dd.indexOf("[H}", p2);
+}
+}
+}
+exam = '' + dd;
+for (var i = 0; i < klist.length; i++){
+exam = exam + "kw[H}" + klist[i] + "{H]";
+}
+// alert(kk);
+// -----------------------------
+}
+
+var _value = libid+';'+name+';'+volnum+';'+years+';'+textPageNum+';'+textVerInfo+';'+bookid+';'+pageid+';'+pianmu+';'+exam;
+
+$("#cv").val(_value);
+// alert(_value);
+$("#rform").submit();
+// openReadPan(bookname, volnum, years, pagecount, banben, bookid, pageid, exam);
+
+}
+
+
+
+
+function booksearch_(id){
+// alert(id);
+$("#kbookid").val(id);
+openPage(1);
+}
+
+function booksearch(id, libid){
+
+var _keyword = $("#ikeyword").val();
+
+if ($("#ikeyword2").is (":hidden")){
+// alert("yincang");
+}
+else {
+// alert("xiaoxie");
+
+var _keyword2 = $("#ikeyword2").val();
+var t_type = $("#adsearch").val(); // 高级检索类型
+
+var ke1tag = false;
+if (_keyword != null & & _keyword.length > 0){
+ke1tag = true;
+}
+
+var ke2tag = false;
+if (_keyword2 != null & & _keyword2.length > 0){
+ke2tag = true;
+}
+
+if (ke1tag & & ke2tag){// 主、次检索词不为空
+if (t_type == "2"){// 与
+_keyword = _keyword + "and" + _keyword2;
+}
+else if (t_type == "3"){// 或
+_keyword = _keyword + "or" + _keyword2;
+}
+else if (t_type == "4"){// 非
+_keyword = _keyword + "not" + _keyword2;
+}
+}
+}
+
+// alert(_keyword);
+return;
+
+var
+prod_str = libid;
+
+var
+_gl = "0";
+if (document.getElementById("igl").checked){
+_gl = "1";
+}
+
+var
+s_type = $("#searchtype").val(); // 检索类型
+1：全文
+2：条目
+var
+url = "/spring/front/insearch?page=1&sbookid=" + id + "&skeyword=" + _keyword + "&sgl=" + _gl + "&sprod=" + prod_str + "&cd=" + s_type;
+// alert(url);
+url = encodeURI(url);
+
+var
+w = $(window).width(); // 浏览器当前窗口可视区域宽度
+var
+h = $(window).height(); // 浏览器当前窗口可视区域高度
+
+w = w * 0.7;
+h = h * 0.7;
+
+w = w + 'px';
+h = h + 'px';
+
+layer.open({
+               type: 2,
+               title: '書內檢索',
+               area: [w, h],
+               fixed: false, // 不固定
+maxmin: true,
+content: url
+});
+}
+< / script >
+    < / head >
+
+        < body
+style = "padding-top:0px; overflow:auto;" >
+        <!--begin
+top -->
+
+< !--end
+top -->
+
+< !--  -->
+
+< div
+style = "height:132px; width:100%; position:fixed; margin-top:0px; z-index:2;" >
+
+        < table
+id = "container_head"
+style = "height:64px;width:100%;min-width:954px;text-align:center;background-color: #000; "
+border = "0"
+cellpadding = "0"
+cellspacing = "0" >
+              < tr >
+              < td
+align = "left"
+
+
+class ="t_head" style="width:100px; text-align:center;" > < a href="/jsp/front/prodlist.jsp" target="_self" > < img src="/assets/img/logo.png" > < / a > < / td >
+
+< td
+valign = "middle"
+style = "text-align:center;" >
+
+< a
+href = "/spring/user/validateenter" > < img
+src = "/upLoadImage/userLogo/20180403093540.png" > < / a > < span
+style = "color:#fff;font-size: 20px; display:none; " > 古籍库V8
+.2 < / span >
+
+< / td >
+< td
+
+
+class ="t_head" style="width:410px; text-align:center;" >
+
+< table
+border = "0"
+cellpadding = "0"
+cellspacing = "0" >
+< tr >
+< td
+style = "text-align:right;" >
+
+< !--
+< span
+
+
+class ="hp" > < a target="_blank" href="http://192.168.0.134:1125" > 异体字 < / a > < / span >
+
+< span
+
+
+class ="hp" > < a target="_blank" href="/help/help.pdf" > 使用幫助 < / a > < / span >
+
+
+-->
+< span
+
+
+class ="hp" > < a target="_self" href="/spring/front/news/list?typeName=古代产品&tag=1" > 產品介紹 < / a > < / span >
+
+< span
+
+
+class ="hp" > < a target="_blank" href="/spring/front/news/helplist?typeName=问题&tag=1&title=1" > 常見問題 < / a > < / span >
+
+< span
+
+
+class ="hp" > < a target="_self" href="/spring/front/news/types?typeName=典海使用指南&tag=1" > 使用幫助 < / a > < / span >
+
+< div
+id = "quit"
+style = "width:80px; display:inline-block;text-align:right;margin-right:8px; line-height:30px;" >
+< a
+style = ""
+href = "javascript:userexit();" > 安全退出 < / a >
+< / div >
+< / td >
+< / tr >
+< tr >
+< td
+style = "" >
+< img
+src = "/assets/head.png"
+width = "410"
+height = "29" / >
+< / td >
+< / tr >
+< / table >
+< / td >
+< / tr >
+< / table >
+
+< style >
+.hp
+{width: 90px;
+display: inline - block;
+height: 30
+px;}
+.hp
+a
+{color:  # F00; text-decoration:none; font-size:15px; }
+.hp
+a: hover
+{color:  # fff; text-decoration:none; }
+
+< / style >
+
+    < script
+src = "/js/message/msg.js" > < / script >
+
+                                 < table
+id = "search_pan"
+style = "height:40px; width:100%; border:0px; text-align:center;"
+align = "center"
+width = "1000"
+border = "0"
+cellspacing = "0"
+cellpadding = "0" >
+              < tr >
+              < td >
+
+              < style >
+              # search_pan_nav{
+              width:100 %;
+
+height: 45
+px;
+background - color:
+# CCC;
+}
+
+.b_label
+{
+    height: 30px;
+line - height: 30
+px;
+width: 35
+px;
+display: inline - block;
+}
+
+# list_tb{ width:95%; margin-left:auto; margin-right:auto;  }
+/ *  # selectPan{
+display: inline - block;
+height: 28
+px;
+position: relative\0;
+top: 2
+px\0;
+
+}
+# selectPan select{
+width: 88
+px;
+font - size: 15
+px / 28
+px;
+height: 28
+px;
+padding: 2
+px
+0;
+
+} * /
+
+# skeyword {
+width: 100
+px;
+display: none;
+}
+
+# re_search {
+position: relative;
+height: 15
+px;
+width: 15
+px;
+
+}
+
+label[
+for ="re_search"] {
+cursor:pointer;
+display: none;
+position: relative;
+top: 2
+px;
+}
+
+.dbox
+{
+    height: 30px;
+}
+
+# search_pan_nav input[type="text"]{
+height: 20
+px;
+font - size: 13
+px / 20
+px;
+line - height: 20
+px;
+padding - left: 1
+px;
+
+}
+
+# adsearch{ width:95px;}
+
+.dbox > input
+{border: none;
+position: relative;
+top: 4
+px;}
+
+.dbox > select
+{
+    display: inline - block;
+height: 20
+px;
+padding - left: 1
+px;
+position: relative;
+top: 2
+px;
+width: 51
+px;
+}
+
+# st_pan{
+cursor: pointer;
+height: 30
+px;
+
+}
+
+# ikeyword{ background-color:#F00;}
+
+# selectPan{
+width: 84
+px;
+position: relative;
+bottom: 3
+px\0;
+}
+
+# gjdiv_1, #st_pan{
+position: relative;
+bottom: 2
+px\0;
+}
+
+.chdiv
+{
+    bottom: 2px;
+
+}
+.chdiv1
+{
+
+}
+
+# selInput{ bottom:1px;}
+
+@ media
+screen and (-webkit - min - device - pixel - ratio:0)
+{ / * 360j
+isu
+X, Chrome, Safari
+specific
+CSS
+here * /
+.chdiv1
+{
+/ ** /
+bottom: 1
+px;
+
+}
+}
+
+@-moz - document
+
+
+url - prefix()
+{ / * 仅firefox
+识别 * /
+.bb
+{background - color:  # 00ff00;}
+ }
+< / style >
+
+    < table
+id = "search_pan_nav"
+style = " position:relative;height:38px; width:100%; border:0px; text-align:center;"
+align = "center"
+width = "1000"
+border = "0"
+cellspacing = "0"
+cellpadding = "0" >
+              < tr >
+              < td >
+              < div
+style = "width:auto; margin-left:auto; margin-right:auto; height:32px;" >
+        < div
+
+
+class ="dbox" id="selInput" style="width:140px;" >
+
+< input
+style = "width:120px;  "
+type = "text"
+id = "b_class" / > < span
+id = "jsfw"
+style = "" > < img
+style = "cursor:pointer;"
+height = "24"
+src = "/assets/row.gif" > < / span >
+< / div >
+
+< div
+
+
+class ="dbox chdiv" style="width:105px;" >
+
+< input
+type = "text"
+placeholder = "書名"
+style = "width:100px;"
+value = "全唐诗900卷"
+name = "bname"
+id = "ibname" >
+< / div >
+
+< div
+
+
+class ="dbox chdiv" style="width:84px;" >
+
+< input
+type = "text"
+placeholder = "作者"
+style = "width:80px;"
+value = ""
+name = "author"
+id = "iauthor" >
+< / div >
+
+< div
+
+
+class ="dbox chdiv1" id="selectPan" >
+
+< select
+id = "iyears"
+name = "s"
+style = "width:78px;" >
+< option
+value = "所有時代"
+selected = "selected" > 時代
+< option
+value = "周" > 周
+< option
+value = "春秋戰國" > 春秋戰國
+< option
+value = "秦" > 秦
+< option
+value = "漢" > 漢
+< option
+value = "三國" > 三國
+< option
+value = "晉" > 晉
+< option
+value = "南北朝" > 南北朝
+< option
+value = "隋" > 隋
+< option
+value = "唐" > 唐
+< option
+value = "五代" > 五代
+< option
+value = "宋" > 宋
+< option
+value = "遼" > 遼
+< option
+value = "金" > 金
+< option
+value = "元" > 元
+< option
+value = "明" > 明
+< option
+value = "清" > 清
+< option
+value = "民國" > 民國
+< / select >
+< / div >
+
+< div
+
+
+class ="dbox chdiv"  style="width:104px;" >
+
+< input
+type = "text"
+placeholder = "版本"
+style = "width:100px;"
+value = ""
+name = "bname"
+id = "ibanben" >
+< / div >
+
+< div
+
+
+class ="dbox chdiv1"  style="width:150px;" id="st_pan" >
+
+< select
+id = "searchtype"
+name = "s_type" >
+< option
+value = "1" > 字詞
+< option
+value = "2" > 篇目
+< / select >
+< input
+type = "text"
+value = "茶"
+name = "keyword"
+id = "ikeyword"
+style = "width:95px;" >
+< / div >
+
+< div
+id = "gjdiv_1"
+
+
+class ="dbox chdiv1"  style="width:100px; display:none;" >
+
+< select
+id = "adsearch" >
+< option
+value = "2" > 與 < / option >
+< option
+value = "3" > 或 < / option >
+< option
+value = "4" > 非 < / option >
+< option
+value = "5" > 從結果中檢索 < / option >
+< / select >
+< / div >
+< div
+id = "gjdiv_2"
+
+
+class ="dbox chdiv"  style="width:97px; display:none;" >
+
+< input
+type = "text"
+id = "ikeyword2"
+style = "width:95px;" / >
+< / div >
+
+< div
+id = "i_gaoji"
+onclick = "gjchange()"
+
+
+class ="button button-primary button-rounded button-small" > 高級檢索 < / div >
+
+< label
+for ="re_search" > < input type="checkbox" id="re_search" / > 重新檢索 < / label >
+
+< div
+id = "iglju"
+style = "display:inline-block;cursor:pointer;" >
+< button
+style = "padding:0px 15px; font-weight:600;"
+onclick = "beginSearch()"
+
+
+class ="button button-primary button-rounded button-small" > GO < / button >
+
+< / div >
+< / div >
+< / td >
+< / tr >
+< / table >
+< / td >
+< / tr >
+< / table >
+< table
+id = "search_type"
+style = "height:25px; width:100%; border:0px; text-align:center; background-color:#FFF;"
+align = "center"
+width = "1000"
+border = "0"
+cellspacing = "0"
+cellpadding = "0" >
+< tr >
+< td
+style = "text-align:center; padding-right:20px; " >
+< span
+id = "jieguo_info" > 共79條 < / span >
+
+< span
+style = " margin-left:40px;" >
+< label > < input
+id = "rjvju"
+onClick = "searchByju(1)"
+value = "1"
+type = "radio"
+name = "iCheck"
+checked > 舉句 < / label > & nbsp; & nbsp;
+< label > < input
+id = "rshu"
+onClick = "searchByShu(1)"
+value = "2"
+type = "radio"
+name = "iCheck" > 尋書 < / label >
+< / span >
+< / td >
+< / tr >
+< / table >
+< / div >
+
+< div
+style = "width:100%;border:0px solid #000000; overflow:hidden; margin-left:auto; margin-right:auto;  padding:0 40px 0 40px; position:relative; top:122px; "
+id = "mm" >
+< div
+style = "width:100%; margin-top:14px; " >
+
+< !-- 按书开始 -->
+
+< !-- 按书结束 -->
+
+< !-- 举句开始
+end = "22" -->
+
+< ul
+id = "list_tb" >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 3606, '卷一百七十八','0','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 3606, '卷一百七十八','0','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷一百七十八
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 3606, '卷一百七十八','0','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“童振枯扶人壽也余遊金陵見宗僧中孚示余 < span
+
+
+class ="red" > 茶 < / span > 數十片拳然重疊其狀如手號為仙人掌茶蓋 < span class ="red" > 新 < / span > 岀乎”
+
+< span
+style = "display:none;"
+id = "p0" > 童振枯扶人壽也余遊金陵見宗僧中孚示余 < span
+
+
+class ="red" > 茶 < / span > 數十片拳然重疊其狀如手號為仙人掌茶蓋 < span class ="red" > 新 < / span > 岀乎 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 3606, '卷一百七十八','0','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',3606,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 3606, '卷一百七十八','1','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 3606, '卷一百七十八','1','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷一百七十八
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 3606, '卷一百七十八','1','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“示余茶數十片拳然重疊其狀如手號為仙人掌 < span
+
+
+class ="red" > 茶 < / span > 蓋 < span class ="red" > 新 < / span > 岀乎玉泉之山曠古未覿因持之見遺兼贈詩”
+
+< span
+style = "display:none;"
+id = "p1" > 示余茶數十片拳然重疊其狀如手號為仙人掌 < span
+
+
+class ="red" > 茶 < / span > 蓋 < span class ="red" > 新 < / span > 岀乎玉泉之山曠古未覿因持之見遺兼贈詩 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 3606, '卷一百七十八','1','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',3606,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4241, '卷二百七','2','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4241, '卷二百七','2','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷二百七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4241, '卷二百七','2','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“題
+尺牘問窮愁秋曉
+一作晚
+招隠寺東峰 < span
+
+
+class ="red" > 茶 < / span > 宴送内弟閻伯均歸江州萬畦 < span class ="red" > 新 < / span > 稻山村數里深”
+
+< span
+style = "display:none;"
+id = "p2" > 題
+尺牘問窮愁秋曉
+一作晚
+招隠寺東峰 < span
+
+
+class ="red" > 茶 < / span > 宴送内弟閻伯均歸江州萬畦 < span class ="red" > 新 < / span > 稻山村數里深 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4241, '卷二百七','2','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',4241,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4241, '卷二百七','3','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4241, '卷二百七','3','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷二百七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4241, '卷二百七','3','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“江州萬畦 < span
+
+
+class ="red" > 新 < / span > 稻山村數里深松到寺門幸有香 < span class ="red" > 茶 < / span > 留穉子”
+
+< span
+style = "display:none;"
+id = "p3" > 江州萬畦 < span
+
+
+class ="red" > 新 < / span > 稻山村數里深松到寺門幸有香 < span class ="red" > 茶 < / span > 留穉子 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4241, '卷二百七','3','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',4241,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4715, '卷二百二十四','4','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4715, '卷二百二十四','4','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷二百二十四
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4715, '卷二百二十四','4','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“已公茅屋下可以賦 < span
+
+
+class ="red" > 新 < / span > 詩枕簟入林僻 < span class ="red" > 茶 < / span > 瓜留客遲江蓮摇白羽天棘 天門冬蔓高丈餘其葉如絲通”
+
+< span
+style = "display:none;"
+id = "p4" > 已公茅屋下可以賦 < span
+
+
+class ="red" > 新 < / span > 詩枕簟入林僻 < span class ="red" > 茶 < / span > 瓜留客遲江蓮摇白羽天棘 天門冬蔓高丈餘其葉如絲通 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 4715, '卷二百二十四','4','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',4715,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5530, '卷二百五十','5','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5530, '卷二百五十','5','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷二百五十
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5530, '卷二百五十','5','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“大隠心蠻僧留古鏡蜀客寄 < span
+
+
+class ="red" > 新 < / span > 琴晒 & nbsp藥竹齋暖擣 < span class ="red" > 茶 < / span > 松院深君一相訪殘雪似山陰早發中嚴寺别契上”
+
+< span
+style = "display:none;"
+id = "p5" > 大隠心蠻僧留古鏡蜀客寄 < span
+
+
+class ="red" > 新 < / span > 琴晒 @ @ 藥竹齋暖擣 < span class ="red" > 茶 < / span > 松院深君一相訪殘雪似山陰早發中嚴寺别契上 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5530, '卷二百五十','5','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',5530,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5766, '卷二百六十七','6','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5766, '卷二百六十七','6','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷二百六十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5766, '卷二百六十七','6','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“碧漣漪老松欹側卧悠揚緑蘿影下拂波紋破焙 < span
+
+
+class ="red" > 茶 < / span > 塢 < span class ="red" > 新 < / span > 茶已上焙舊架憂生醭旋旋續 < span class ="red" > 新 < / span > 烟呼兒劈寒”
+
+< span
+style = "display:none;"
+id = "p6" > 碧漣漪老松欹側卧悠揚緑蘿影下拂波紋破焙 < span
+
+
+class ="red" > 茶 < / span > 塢 < span class ="red" > 新 < / span > 茶已上焙舊架憂生醭旋旋續 < span class ="red" > 新 < / span > 烟呼兒劈寒 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5766, '卷二百六十七','6','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',5766,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5766, '卷二百六十七','7','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5766, '卷二百六十七','7','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷二百六十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5766, '卷二百六十七','7','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“老松欹側卧悠揚緑蘿影下拂波紋破焙茶塢 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 已上焙舊架憂生醭旋旋續 < span class ="red" > 新 < / span > 烟呼兒劈寒木彈琴”
+
+< span
+style = "display:none;"
+id = "p7" > 老松欹側卧悠揚緑蘿影下拂波紋破焙茶塢 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 已上焙舊架憂生醭旋旋續 < span class ="red" > 新 < / span > 烟呼兒劈寒木彈琴 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 5766, '卷二百六十七','7','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',5766,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6156, '卷二百七十九','8','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6156, '卷二百七十九','8','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷二百七十九
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6156, '卷二百七十九','8','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“溜味何濃因聲遠報浮丘子不奏登封時不容 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 詠寄上西川相公二十三舅大夫二十舅三獻蓬萊”
+
+< span
+style = "display:none;"
+id = "p8" > 溜味何濃因聲遠報浮丘子不奏登封時不容 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 詠寄上西川相公二十三舅大夫二十舅三獻蓬萊 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6156, '卷二百七十九','8','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',6156,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6537, '卷二百九十九','9','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6537, '卷二百九十九','9','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷二百九十九
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6537, '卷二百九十九','9','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“心力少休讀養生方擬作讀經人空房置淨巾鎖 < span
+
+
+class ="red" > 茶 < / span > 藤篋曝藥竹牀 < span class ="red" > 新 < / span > 老病應隨業因縁不離身焚香向”
+
+< span
+style = "display:none;"
+id = "p9" > 心力少休讀養生方擬作讀經人空房置淨巾鎖 < span
+
+
+class ="red" > 茶 < / span > 藤篋曝藥竹牀 < span class ="red" > 新 < / span > 老病應隨業因縁不離身焚香向 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6537, '卷二百九十九','9','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',6537,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6554, '卷三百','10','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6554, '卷三百','10','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6554, '卷三百','10','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“兵機鏁惡徒狂宼盡恩驅老將壯心生水門向晚 < span
+
+
+class ="red" > 茶 < / span > 商閙橋市通宵酒客行秋日梁王池閣好 < span class ="red" > 新 < / span > 歌散入”
+
+< span
+style = "display:none;"
+id = "p10" > 兵機鏁惡徒狂宼盡恩驅老將壯心生水門向晚 < span
+
+
+class ="red" > 茶 < / span > 商閙橋市通宵酒客行秋日梁王池閣好 < span class ="red" > 新 < / span > 歌散入 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6554, '卷三百','10','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',6554,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6827, '卷三百十六','11','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6827, '卷三百十六','11','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6827, '卷三百十六','11','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“枝不讓春更聞歌子夜桃李豔妝 < span
+
+
+class ="red" > 新 < / span > 津梁寺採 < span class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 與幕中諸公遍賞芳香尤異因題四韻兼呈陸郎中”
+
+< span
+style = "display:none;"
+id = "p11" > 枝不讓春更聞歌子夜桃李豔妝 < span
+
+
+class ="red" > 新 < / span > 津梁寺採 < span class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 與幕中諸公遍賞芳香尤異因題四韻兼呈陸郎中 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6827, '卷三百十六','11','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',6827,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6955, '卷三百二十二','12','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6955, '卷三百二十二','12','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百二十二
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6955, '卷三百二十二','12','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“接人
+一作仁
+祠去策無俗賔種杏堂暑熱烹 < span
+
+
+class ="red" > 茶 < / span > 含露 < span class ="red" > 新 < / span > 井徑交碧蘚軒窗棲白雲飛沈禽魚樂芬馥”
+
+< span
+style = "display:none;"
+id = "p12" > 接人
+一作仁
+祠去策無俗賔種杏堂暑熱烹 < span
+
+
+class ="red" > 茶 < / span > 含露 < span class ="red" > 新 < / span > 井徑交碧蘚軒窗棲白雲飛沈禽魚樂芬馥 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 6955, '卷三百二十二','12','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',6955,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7567, '卷三百五十一','13','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7567, '卷三百五十一','13','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百五十一
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7567, '卷三百五十一','13','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“偶地即安居満庭芳草積㢲上人以生閒自採 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 見贈酬之以詩芳叢翳湘生零露凝清華復此雪山”
+
+< span
+style = "display:none;"
+id = "p13" > 偶地即安居満庭芳草積㢲上人以生閒自採 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 見贈酬之以詩芳叢翳湘生零露凝清華復此雪山 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7567, '卷三百五十一','13','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',7567,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7713, '卷三百五十六','14','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7713, '卷三百五十六','14','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百五十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7713, '卷三百五十六','14','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“氣力已微心尚在時時一曲夢中吹西山蘭若試 < span
+
+
+class ="red" > 茶 < / span > 歌山僧後檐茶數叢春來映竹抽 < span class ="red" > 新 < / span > 茸宛然爲客振”
+
+< span
+style = "display:none;"
+id = "p14" > 氣力已微心尚在時時一曲夢中吹西山蘭若試 < span
+
+
+class ="red" > 茶 < / span > 歌山僧後檐茶數叢春來映竹抽 < span class ="red" > 新 < / span > 茸宛然爲客振 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7713, '卷三百五十六','14','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',7713,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7713, '卷三百五十六','15','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7713, '卷三百五十六','15','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百五十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7713, '卷三百五十六','15','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“在時時一曲夢中吹西山蘭若試茶歌山僧後檐 < span
+
+
+class ="red" > 茶 < / span > 數叢春來映竹抽 < span class ="red" > 新 < / span > 茸宛然爲客振衣起自傍芳叢”
+
+< span
+style = "display:none;"
+id = "p15" > 在時時一曲夢中吹西山蘭若試茶歌山僧後檐 < span
+
+
+class ="red" > 茶 < / span > 數叢春來映竹抽 < span class ="red" > 新 < / span > 茸宛然爲客振衣起自傍芳叢 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7713, '卷三百五十六','15','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',7713,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7798, '卷三百五十九','16','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7798, '卷三百五十九','16','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百五十九
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7798, '卷三百五十九','16','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“望雲山日夕佳薤葉照人呈夏簟松花滿盌試 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 樓中飲興因明月江上詩情爲晚霞北地交親長引”
+
+< span
+style = "display:none;"
+id = "p16" > 望雲山日夕佳薤葉照人呈夏簟松花滿盌試 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 樓中飲興因明月江上詩情爲晚霞北地交親長引 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7798, '卷三百五十九','16','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',7798,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7974, '卷三百六十六','17','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7974, '卷三百六十六','17','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百六十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7974, '卷三百六十六','17','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“吳會行湖州貢焙
+一本此下有看發二字 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 鳳輦尋春半醉回僊娥進水御簾開牡丹花笑金鈿”
+
+< span
+style = "display:none;"
+id = "p17" > 吳會行湖州貢焙
+一本此下有看發二字 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 鳳輦尋春半醉回僊娥進水御簾開牡丹花笑金鈿 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 7974, '卷三百六十六','17','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',7974,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8139, '卷三百七十六','18','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8139, '卷三百七十六','18','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百七十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8139, '卷三百七十六','18','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“繼相孟子願依鄰夜思琴
+一作酒
+語切晝情 < span
+
+
+class ="red" > 茶 < / span > 味 < span class ="red" > 新 < / span > 霜枝留過鵲 一作鶴 風竹掃蒙塵郢唱一”
+
+< span
+style = "display:none;"
+id = "p18" > 繼相孟子願依鄰夜思琴
+一作酒
+語切晝情 < span
+
+
+class ="red" > 茶 < / span > 味 < span class ="red" > 新 < / span > 霜枝留過鵲 一作鶴 風竹掃蒙塵郢唱一 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8139, '卷三百七十六','18','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',8139,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8311, '卷三百八十四','19','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8311, '卷三百八十四','19','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百八十四
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8311, '卷三百八十四','19','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“藤
+一作撜一作蕂
+花甃石 < span
+
+
+class ="red" > 新 < / span > 開井穿林自種 < span class ="red" > 茶 < / span > 時逢海南客蠻語問誰家征西將黄沙北風起半夜”
+
+< span
+style = "display:none;"
+id = "p19" > 藤
+一作撜一作蕂
+花甃石 < span
+
+
+class ="red" > 新 < / span > 開井穿林自種 < span class ="red" > 茶 < / span > 時逢海南客蠻語問誰家征西將黄沙北風起半夜 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8311, '卷三百八十四','19','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',8311,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8325, '卷三百八十四','20','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8325, '卷三百八十四','20','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百八十四
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8325, '卷三百八十四','20','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“知幽室獨焚香清晨下未央山開登竹閣僧到出 < span
+
+
+class ="red" > 茶 < / span > 牀收拾 < span class ="red" > 新 < / span > 琴譜封題舊藥方逍遥無别事不似在班”
+
+< span
+style = "display:none;"
+id = "p20" > 知幽室獨焚香清晨下未央山開登竹閣僧到出 < span
+
+
+class ="red" > 茶 < / span > 牀收拾 < span class ="red" > 新 < / span > 琴譜封題舊藥方逍遥無别事不似在班 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8325, '卷三百八十四','20','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',8325,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8334, '卷三百八十四','21','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8334, '卷三百八十四','21','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百八十四
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8334, '卷三百八十四','21','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“行氣訣爐裏降眞香尚儉經營少居閑意思長秋 < span
+
+
+class ="red" > 茶 < / span > 莫夜飲 < span class ="red" > 新 < / span > 自作松漿每憶舊山居 < span class ="red" > 新 < / span > 教上墨圖晚花”
+
+< span
+style = "display:none;"
+id = "p21" > 行氣訣爐裏降眞香尚儉經營少居閑意思長秋 < span
+
+
+class ="red" > 茶 < / span > 莫夜飲 < span class ="red" > 新 < / span > 自作松漿每憶舊山居 < span class ="red" > 新 < / span > 教上墨圖晚花 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8334, '卷三百八十四','21','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',8334,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8378, '卷三百八十六','22','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8378, '卷三百八十六','22','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百八十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8378, '卷三百八十六','22','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“愛 < span
+
+
+class ="red" > 新 < / span > 梅好行尋一徑斜不教人掃石恐損落來花 < span class ="red" > 茶 < / span > 嶺紫芽連白蘂初向嶺頭生自看家人摘尋常觸露”
+
+< span
+style = "display:none;"
+id = "p22" > 愛 < span
+
+
+class ="red" > 新 < / span > 梅好行尋一徑斜不教人掃石恐損落來花 < span class ="red" > 茶 < / span > 嶺紫芽連白蘂初向嶺頭生自看家人摘尋常觸露 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8378, '卷三百八十六','22','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',8378,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8388, '卷三百八十六','23','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8388, '卷三百八十六','23','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百八十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8388, '卷三百八十六','23','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“過一千首白頭 < span
+
+
+class ="red" > 新 < / span > 受秘書郎送晊師九星臺下煎 < span class ="red" > 茶 < / span > 别五老峰頭覔寺居作得 < span class ="red" > 新 < / span > 詩旋相寄”
+
+< span
+style = "display:none;"
+id = "p23" > 過一千首白頭 < span
+
+
+class ="red" > 新 < / span > 受秘書郎送晊師九星臺下煎 < span class ="red" > 茶 < / span > 别五老峰頭覔寺居作得 < span class ="red" > 新 < / span > 詩旋相寄 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8388, '卷三百八十六','23','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',8388,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8444, '卷三百八十八','24','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8444, '卷三百八十八','24','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百八十八
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8444, '卷三百八十八','24','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“色此水有盡時此情無終極走筆謝孟諫議寄 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 日高丈五睡正濃軍將打門驚周公口云諫議送書”
+
+< span
+style = "display:none;"
+id = "p24" > 色此水有盡時此情無終極走筆謝孟諫議寄 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 日高丈五睡正濃軍將打門驚周公口云諫議送書 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8444, '卷三百八十八','24','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',8444,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8444, '卷三百八十八','25','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8444, '卷三百八十八','25','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百八十八
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8444, '卷三百八十八','25','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“道 < span
+
+
+class ="red" > 新 < / span > 年入山裏蟄蟲驚動春風起天子須嘗陽羨 < span class ="red" > 茶 < / span > ”
+
+< span
+style = "display:none;"
+id = "p25" > 道 < span
+
+
+class ="red" > 新 < / span > 年入山裏蟄蟲驚動春風起天子須嘗陽羨 < span class ="red" > 茶 < / span > < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8444, '卷三百八十八','25','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',8444,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8449, '卷三百八十八','26','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8449, '卷三百八十八','26','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百八十八
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8449, '卷三百八十八','26','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“二首君家山頭松樹風適來入我竹林裏一片 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 破鼻香”
+
+< span
+style = "display:none;"
+id = "p26" > 二首君家山頭松樹風適來入我竹林裏一片 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 破鼻香 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8449, '卷三百八十八','26','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',8449,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8573, '卷三百九十五','27','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8573, '卷三百九十五','27','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷三百九十五
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8573, '卷三百九十五','27','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“浪徒爲汨没天之涯不爲雙井水滿甌泛泛烹春 < span
+
+
+class ="red" > 茶 < / span > 不爲中山漿清 < span class ="red" > 新 < / span > 馥 一作樸 鼻盈百車不爲池”
+
+< span
+style = "display:none;"
+id = "p27" > 浪徒爲汨没天之涯不爲雙井水滿甌泛泛烹春 < span
+
+
+class ="red" > 茶 < / span > 不爲中山漿清 < span class ="red" > 新 < / span > 馥 一作樸 鼻盈百車不爲池 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 8573, '卷三百九十五','27','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',8573,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9221, '卷四百三十一','28','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9221, '卷四百三十一','28','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百三十一
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9221, '卷四百三十一','28','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“回首 < span
+
+
+class ="red" > 新 < / span > 秋松影下半夜鐘聲後清影不宜昏聊將 < span class ="red" > 茶 < / span > 代酒自秦望赴五松驛馬上偶睡睡覺成吟長途發”
+
+< span
+style = "display:none;"
+id = "p28" > 回首 < span
+
+
+class ="red" > 新 < / span > 秋松影下半夜鐘聲後清影不宜昏聊將 < span class ="red" > 茶 < / span > 代酒自秦望赴五松驛馬上偶睡睡覺成吟長途發 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9221, '卷四百三十一','28','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',9221,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9420, '卷四百三十七','29','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9420, '卷四百三十七','29','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百三十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9420, '卷四百三十七','29','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“遠不知近來文卷裏半是憶君詩蕭員外寄 < span
+
+
+class ="red" > 新 < / span > 蜀 < span class ="red" > 茶 < / span > & nbsp蜀茶寄到但驚 < span class ="red" > 新 < / span > 渭水煎來始覺珍滿甌似乳堪持”
+
+< span
+style = "display:none;"
+id = "p29" > 遠不知近來文卷裏半是憶君詩蕭員外寄 < span
+
+
+class ="red" > 新 < / span > 蜀 < span class ="red" > 茶 < / span > @ @ 蜀茶寄到但驚 < span class ="red" > 新 < / span > 渭水煎來始覺珍滿甌似乳堪持 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9420, '卷四百三十七','29','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',9420,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9420, '卷四百三十七','30','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9420, '卷四百三十七','30','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百三十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9420, '卷四百三十七','30','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“知近來文卷裏半是憶君詩蕭員外寄 < span
+
+
+class ="red" > 新 < / span > 蜀茶 & nbsp蜀 < span class ="red" > 茶 < / span > 寄到但驚 < span class ="red" > 新 < / span > 渭水煎來始覺珍滿甌似乳堪持玩況”
+
+< span
+style = "display:none;"
+id = "p30" > 知近來文卷裏半是憶君詩蕭員外寄 < span
+
+
+class ="red" > 新 < / span > 蜀茶 @ @ 蜀 < span class ="red" > 茶 < / span > 寄到但驚 < span class ="red" > 新 < / span > 渭水煎來始覺珍滿甌似乳堪持玩況 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9420, '卷四百三十七','30','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',9420,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9485, '卷四百三十九','31','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9485, '卷四百三十九','31','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百三十九
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9485, '卷四百三十九','31','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“日東園一樹花小醆吹醅嘗冷酒深爐敲火炙 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > ”
+
+< span
+style = "display:none;"
+id = "p31" > 日東園一樹花小醆吹醅嘗冷酒深爐敲火炙 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9485, '卷四百三十九','31','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',9485,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9486, '卷四百三十九','32','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9486, '卷四百三十九','32','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百三十九
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9486, '卷四百三十九','32','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“作晚
+春野猿疑弄客山鳥似呼人酒嫩傾金液 < span
+
+
+class ="red" > 茶 < / span > < span class ="red" > 新 < / span > 碾玉塵可憐幽靜地堪寄老慵身早春聞提壺鳥”
+
+< span
+style = "display:none;"
+id = "p32" > 作晚
+春野猿疑弄客山鳥似呼人酒嫩傾金液 < span
+
+
+class ="red" > 茶 < / span > < span class ="red" > 新 < / span > 碾玉塵可憐幽靜地堪寄老慵身早春聞提壺鳥 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9486, '卷四百三十九','32','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',9486,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9508, '卷四百三十九','33','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9508, '卷四百三十九','33','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百三十九
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9508, '卷四百三十九','33','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“人腸斷玉兔銀蟾遠不知谢肛李六郎中寄 < span
+
+
+class ="red" > 新 < / span > 蜀 < span class ="red" > 茶 < / span > 故情周匝向交親 < span class ="red" > 新 < / span > 茗分張及病身紅紙一封書後”
+
+< span
+style = "display:none;"
+id = "p33" > 人腸斷玉兔銀蟾遠不知谢肛李六郎中寄 < span
+
+
+class ="red" > 新 < / span > 蜀 < span class ="red" > 茶 < / span > 故情周匝向交親 < span class ="red" > 新 < / span > 茗分張及病身紅紙一封書後 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9508, '卷四百三十九','33','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',9508,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9517, '卷四百四十','34','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9517, '卷四百四十','34','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百四十
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9517, '卷四百四十','34','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“寂寞清明日蕭條司馬家留餳和冷粥出火煮 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 欲别能無酒相留亦有花南遷更何處此地已天涯”
+
+< span
+style = "display:none;"
+id = "p34" > 寂寞清明日蕭條司馬家留餳和冷粥出火煮 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 欲别能無酒相留亦有花南遷更何處此地已天涯 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9517, '卷四百四十','34','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',9517,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9599, '卷四百四十二','35','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9599, '卷四百四十二','35','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百四十二
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9599, '卷四百四十二','35','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“地潤東風暖閑行蹋草芽呼童遣移竹留客伴嘗 < span
+
+
+class ="red" > 茶 < / span > 霤滳簷冰盡塵浮隟日斜 < span class ="red" > 新 < / span > 居未曾到鄰里是誰家”
+
+< span
+style = "display:none;"
+id = "p35" > 地潤東風暖閑行蹋草芽呼童遣移竹留客伴嘗 < span
+
+
+class ="red" > 茶 < / span > 霤滳簷冰盡塵浮隟日斜 < span class ="red" > 新 < / span > 居未曾到鄰里是誰家 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9599, '卷四百四十二','35','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',9599,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9851, '卷四百四十九','36','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9851, '卷四百四十九','36','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百四十九
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9851, '卷四百四十九','36','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“簷前 < span
+
+
+class ="red" > 新 < / span > 葉覆殘花席上餘桮對早 < span class ="red" > 茶 < / span > 好是老身銷日處誰能騎馬人家惜落花夜來風雨急無復舊花”
+
+< span
+style = "display:none;"
+id = "p36" > 簷前 < span
+
+
+class ="red" > 新 < / span > 葉覆殘花席上餘桮對早 < span class ="red" > 茶 < / span > 好是老身銷日處誰能騎馬人家惜落花夜來風雨急無復舊花 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9851, '卷四百四十九','36','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',9851,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9876, '卷四百五十','37','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9876, '卷四百五十','37','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百五十
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9876, '卷四百五十','37','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“事見月連宵坐聞風盡日眠室香羅藥氣籠煖焙 < span
+
+
+class ="red" > 茶 < / span > 煙鶴啄 < span class ="red" > 新 < / span > 晴地雞棲薄暮天自看淘酒米倚杖小池”
+
+< span
+style = "display:none;"
+id = "p37" > 事見月連宵坐聞風盡日眠室香羅藥氣籠煖焙 < span
+
+
+class ="red" > 茶 < / span > 煙鶴啄 < span class ="red" > 新 < / span > 晴地雞棲薄暮天自看淘酒米倚杖小池 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9876, '卷四百五十','37','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',9876,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9997, '卷四百五十四','38','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9997, '卷四百五十四','38','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百五十四
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9997, '卷四百五十四','38','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“暖變牆衣色晴催木筆花桃根知酒渴晚送一甌 < span
+
+
+class ="red" > 茶 < / span > 感春老思不禁春風光照眼 < span class ="red" > 新 < / span > 花房紅烏觜池浪碧”
+
+< span
+style = "display:none;"
+id = "p38" > 暖變牆衣色晴催木筆花桃根知酒渴晚送一甌 < span
+
+
+class ="red" > 茶 < / span > 感春老思不禁春風光照眼 < span class ="red" > 新 < / span > 花房紅烏觜池浪碧 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 9997, '卷四百五十四','38','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',9997,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10001, '卷四百五十四','39','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10001, '卷四百五十四','39','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百五十四
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10001, '卷四百五十四','39','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“人休醉是殘花悶吟工部 < span
+
+
+class ="red" > 新 < / span > 來句渴飲毗陵遠到 < span class ="red" > 茶 < / span > 兄弟東西官職冷門前車馬向誰家玉泉寺南三里”
+
+< span
+style = "display:none;"
+id = "p39" > 人休醉是殘花悶吟工部 < span
+
+
+class ="red" > 新 < / span > 來句渴飲毗陵遠到 < span class ="red" > 茶 < / span > 兄弟東西官職冷門前車馬向誰家玉泉寺南三里 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10001, '卷四百五十四','39','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',10001,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10036, '卷四百五十六','40','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10036, '卷四百五十六','40','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百五十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10036, '卷四百五十六','40','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“招李侍郎公垂 < span
+
+
+class ="red" > 新 < / span > 亭未有客竟日獨何爲趂暖泥 < span class ="red" > 茶 < / span > 竈防寒夾竹籬頭風初定後眼闇欲明時淺把三分”
+
+< span
+style = "display:none;"
+id = "p40" > 招李侍郎公垂 < span
+
+
+class ="red" > 新 < / span > 亭未有客竟日獨何爲趂暖泥 < span class ="red" > 茶 < / span > 竈防寒夾竹籬頭風初定後眼闇欲明時淺把三分 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10036, '卷四百五十六','40','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',10036,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10264, '卷四百六十四','41','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10264, '卷四百六十四','41','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百六十四
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10264, '卷四百六十四','41','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“白雲今日仲容修故業草堂焉敢更移文謝寄 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 嗣復作相後止貶觀察郡守此稱司馬疑非嗣復”
+
+< span
+style = "display:none;"
+id = "p41" > 白雲今日仲容修故業草堂焉敢更移文謝寄 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 嗣復作相後止貶觀察郡守此稱司馬疑非嗣復 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10264, '卷四百六十四','41','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',10264,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10331, '卷四百六十七','42','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10331, '卷四百六十七','42','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百六十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10331, '卷四百六十七','42','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“ < span
+
+
+class ="red" > 新 < / span > 詩爭羡郢中才 < span class ="red" > 茶 < / span > 煙褭褭籠禪榻竹影蕭蕭掃徑苔醉後不知明月上狂歌直到夜深回了然塵事不”
+
+< span
+style = "display:none;"
+id = "p42" > < span
+
+
+class ="red" > 新 < / span > 詩爭羡郢中才 < span class ="red" > 茶 < / span > 煙褭褭籠禪榻竹影蕭蕭掃徑苔醉後不知明月上狂歌直到夜深回了然塵事不 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10331, '卷四百六十七','42','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',10331,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10341, '卷四百六十八','43','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10341, '卷四百六十八','43','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百六十八
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10341, '卷四百六十八','43','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“蜘蛛絲立秋日商風動葉初蕭索一貧居老性容 < span
+
+
+class ="red" > 茶 < / span > 少羸肌與簟疎舊醅難重漉 < span class ="red" > 新 < / span > 菜未勝鉏才薄無潘”
+
+< span
+style = "display:none;"
+id = "p43" > 蜘蛛絲立秋日商風動葉初蕭索一貧居老性容 < span
+
+
+class ="red" > 茶 < / span > 少羸肌與簟疎舊醅難重漉 < span class ="red" > 新 < / span > 菜未勝鉏才薄無潘 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10341, '卷四百六十八','43','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',10341,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10932, '卷四百九十六','44','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10932, '卷四百九十六','44','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百九十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10932, '卷四百九十六','44','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“一作採
+鶴情
+一作淸
+愛花高酒户煮藥汙 < span
+
+
+class ="red" > 茶 < / span > 鐺莫便多時住煙霄路在城送源中丞赴 < span class ="red" > 新 < / span > 羅赤墀”
+
+< span
+style = "display:none;"
+id = "p44" > 一作採
+鶴情
+一作淸
+愛花高酒户煮藥汙 < span
+
+
+class ="red" > 茶 < / span > 鐺莫便多時住煙霄路在城送源中丞赴 < span class ="red" > 新 < / span > 羅赤墀 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10932, '卷四百九十六','44','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',10932,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10952, '卷四百九十七','45','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10952, '卷四百九十七','45','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷四百九十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10952, '卷四百九十七','45','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“相憶詞寄楊工部聞毘陵舍弟自罨溪入茶山採 < span
+
+
+class ="red" > 茶 < / span > 溪路好花影半浮沉畫舸僧同上春山客共尋芳 < span class ="red" > 新 < / span > ”
+
+< span
+style = "display:none;"
+id = "p45" > 相憶詞寄楊工部聞毘陵舍弟自罨溪入茶山採 < span
+
+
+class ="red" > 茶 < / span > 溪路好花影半浮沉畫舸僧同上春山客共尋芳 < span class ="red" > 新 < / span > < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 10952, '卷四百九十七','45','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',10952,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11031, '卷五百','46','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11031, '卷五百','46','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷五百
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11031, '卷五百','46','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“上露色似洞中泉莫厭時時寄須知法未傳乞 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > ”
+
+< span
+style = "display:none;"
+id = "p46" > 上露色似洞中泉莫厭時時寄須知法未傳乞 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11031, '卷五百','46','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',11031,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11055, '卷五百一','47','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11055, '卷五百一','47','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷五百一
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11055, '卷五百一','47','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“高臺尋僧不遇入門愁自散不假見僧翁花落煎 < span
+
+
+class ="red" > 茶 < / span > 水松生醒酒風拂牀尋古召畫拔刺 < span class ="red" > 新 < / span > 叢别有遊人”
+
+< span
+style = "display:none;"
+id = "p47" > 高臺尋僧不遇入門愁自散不假見僧翁花落煎 < span
+
+
+class ="red" > 茶 < / span > 水松生醒酒風拂牀尋古召畫拔刺 < span class ="red" > 新 < / span > 叢别有遊人 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11055, '卷五百一','47','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',11055,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11677, '卷五百二十九','48','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11677, '卷五百二十九','48','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷五百二十九
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11677, '卷五百二十九','48','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“大隱心蠻僧留古鏡蜀客寄 < span
+
+
+class ="red" > 新 < / span > 琴曬藥竹齋暖擣 < span class ="red" > 茶 < / span > 松院 一作逕 深思君一相訪殘雪似山陰放猿”
+
+< span
+style = "display:none;"
+id = "p48" > 大隱心蠻僧留古鏡蜀客寄 < span
+
+
+class ="red" > 新 < / span > 琴曬藥竹齋暖擣 < span class ="red" > 茶 < / span > 松院 一作逕 深思君一相訪殘雪似山陰放猿 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 11677, '卷五百二十九','48','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',11677,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12155, '卷五百四十七','49','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12155, '卷五百四十七','49','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷五百四十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12155, '卷五百四十七','49','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“淸池半似紅顔醉凌波欲暮時茶亭靜得塵埃外 < span
+
+
+class ="red" > 茶 < / span > 芳小華山此亭真寂寞世路少人閑宿 < span class ="red" > 新 < / span > 安村步淅”
+
+< span
+style = "display:none;"
+id = "p49" > 淸池半似紅顔醉凌波欲暮時茶亭靜得塵埃外 < span
+
+
+class ="red" > 茶 < / span > 芳小華山此亭真寂寞世路少人閑宿 < span class ="red" > 新 < / span > 安村步淅 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12155, '卷五百四十七','49','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',12155,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12295, '卷五百五十一','50','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12295, '卷五百五十一','50','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷五百五十一
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12295, '卷五百五十一','50','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“征人歸來若得長條贈不憚風霜與苦辛 < span
+
+
+class ="red" > 新 < / span > 植紅 < span class ="red" > 茶 < / span > 花偶出被人移去以詩索之嚴 一作最 恨柴門”
+
+< span
+style = "display:none;"
+id = "p50" > 征人歸來若得長條贈不憚風霜與苦辛 < span
+
+
+class ="red" > 新 < / span > 植紅 < span class ="red" > 茶 < / span > 花偶出被人移去以詩索之嚴 一作最 恨柴門 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12295, '卷五百五十一','50','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',12295,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12772, '卷五百七十三','51','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12772, '卷五百七十三','51','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷五百七十三
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12772, '卷五百七十三','51','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“雁過城人家嵩嶽色公府洛河聲聯句逢秋盡嘗 < span
+
+
+class ="red" > 茶 < / span > 見月生 < span class ="red" > 新 < / span > 衣裁白苧思從曲江行”
+
+< span
+style = "display:none;"
+id = "p51" > 雁過城人家嵩嶽色公府洛河聲聯句逢秋盡嘗 < span
+
+
+class ="red" > 茶 < / span > 見月生 < span class ="red" > 新 < / span > 衣裁白苧思從曲江行 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 12772, '卷五百七十三','51','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',12772,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13118, '卷五百九十','52','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13118, '卷五百九十','52','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷五百九十
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13118, '卷五百九十','52','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“使君愛客情無已客在金臺價無比春風三月貢 < span
+
+
+class ="red" > 茶 < / span > 時盡逐紅旌到山裏焙中清曉朱門開筐箱漸見 < span class ="red" > 新 < / span > ”
+
+< span
+style = "display:none;"
+id = "p52" > 使君愛客情無已客在金臺價無比春風三月貢 < span
+
+
+class ="red" > 茶 < / span > 時盡逐紅旌到山裏焙中清曉朱門開筐箱漸見 < span class ="red" > 新 < / span > < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13118, '卷五百九十','52','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',13118,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13129, '卷五百九十','53','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13129, '卷五百九十','53','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷五百九十
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13129, '卷五百九十','53','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“尋紫蕨挽樹得青梅燕靜銜泥起蜂喧抱蘂囘嫩 < span
+
+
+class ="red" > 茶 < / span > 重攪緑 < span class ="red" > 新 < / span > 酒畧炊醅漠漠蠶生紙涓涓水弄苔丁香”
+
+< span
+style = "display:none;"
+id = "p53" > 尋紫蕨挽樹得青梅燕靜銜泥起蜂喧抱蘂囘嫩 < span
+
+
+class ="red" > 茶 < / span > 重攪緑 < span class ="red" > 新 < / span > 酒畧炊醅漠漠蠶生紙涓涓水弄苔丁香 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13129, '卷五百九十','53','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',13129,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13513, '卷六百十三','54','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13513, '卷六百十三','54','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷六百十三
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13513, '卷六百十三','54','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“猶見鄰僧爲引泉龕上已生 < span
+
+
+class ="red" > 新 < / span > 石耳壁間空帶舊 < span class ="red" > 茶 < / span > 煙南宗弟子時時到泣把山花奠几筵陪江西裵公”
+
+< span
+style = "display:none;"
+id = "p54" > 猶見鄰僧爲引泉龕上已生 < span
+
+
+class ="red" > 新 < / span > 石耳壁間空帶舊 < span class ="red" > 茶 < / span > 煙南宗弟子時時到泣把山花奠几筵陪江西裵公 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13513, '卷六百十三','54','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',13513,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13671, '卷六百二十','55','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13671, '卷六百二十','55','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷六百二十
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13671, '卷六百二十','55','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“說焙前人時時炙花脯
+紫花焙人以花爲脯 < span
+
+
+class ="red" > 茶 < / span > 鼎 < span class ="red" > 新 < / span > 泉氣味良古鐵形狀醜那堪風雪夜更值煙霞”
+
+< span
+style = "display:none;"
+id = "p55" > 說焙前人時時炙花脯
+紫花焙人以花爲脯 < span
+
+
+class ="red" > 茶 < / span > 鼎 < span class ="red" > 新 < / span > 泉氣味良古鐵形狀醜那堪風雪夜更值煙霞 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13671, '卷六百二十','55','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',13671,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13762, '卷六百二十六','56','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13762, '卷六百二十六','56','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷六百二十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13762, '卷六百二十六','56','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“病客功夫經未演故人書信納 < span
+
+
+class ="red" > 新 < / span > 磨閑臨靜案修 < span class ="red" > 茶 < / span > 品獨傍深溪記藥科”
+
+< span
+style = "display:none;"
+id = "p56" > 病客功夫經未演故人書信納 < span
+
+
+class ="red" > 新 < / span > 磨閑臨靜案修 < span class ="red" > 茶 < / span > 品獨傍深溪記藥科 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13762, '卷六百二十六','56','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',13762,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13910, '卷六百三十三','57','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13910, '卷六百三十三','57','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷六百三十三
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13910, '卷六百三十三','57','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“絮狂飛自俗家正是階前開遠信小娥旋拂碾 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 戊午三月晦二首隨風逐浪劇蓬萍圓首何曾解最”
+
+< span
+style = "display:none;"
+id = "p57" > 絮狂飛自俗家正是階前開遠信小娥旋拂碾 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 戊午三月晦二首隨風逐浪劇蓬萍圓首何曾解最 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13910, '卷六百三十三','57','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',13910,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13924, '卷六百三十四','58','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13924, '卷六百三十四','58','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷六百三十四
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13924, '卷六百三十四','58','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“更傍門丑年冬醉日昔聞都下酒何如今喜折 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 不堪病渴仍多慮好向㴩湖便出家”
+
+< span
+style = "display:none;"
+id = "p58" > 更傍門丑年冬醉日昔聞都下酒何如今喜折 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 不堪病渴仍多慮好向㴩湖便出家 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13924, '卷六百三十四','58','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',13924,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13928, '卷六百三十四','59','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13928, '卷六百三十四','59','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷六百三十四
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13928, '卷六百三十四','59','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“鸞勝鳳勝煙霞客來須共醒醒看碾盡明昌幾角 < span
+
+
+class ="red" > 茶 < / span > 造化無端欲自神裁紅剪翠爲 < span class ="red" > 新 < / span > 春不如分減閑心”
+
+< span
+style = "display:none;"
+id = "p59" > 鸞勝鳳勝煙霞客來須共醒醒看碾盡明昌幾角 < span
+
+
+class ="red" > 茶 < / span > 造化無端欲自神裁紅剪翠爲 < span class ="red" > 新 < / span > 春不如分減閑心 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 13928, '卷六百三十四','59','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',13928,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14775, '卷六百七十五','60','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14775, '卷六百七十五','60','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷六百七十五
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14775, '卷六百七十五','60','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“卿不易留滿朝張祖席半路上仙舟篋重藏吳畫 < span
+
+
+class ="red" > 茶 < / span > < span class ="red" > 新 < / span > 換越甌郡迎紅燭宴寺宿翠嵐樓觸目成幽興全”
+
+< span
+style = "display:none;"
+id = "p60" > 卿不易留滿朝張祖席半路上仙舟篋重藏吳畫 < span
+
+
+class ="red" > 茶 < / span > < span class ="red" > 新 < / span > 換越甌郡迎紅燭宴寺宿翠嵐樓觸目成幽興全 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14775, '卷六百七十五','60','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',14775,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14802, '卷六百七十六','61','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14802, '卷六百七十六','61','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷六百七十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14802, '卷六百七十六','61','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“春愁梅黄麥緑無歸處可得漂漂愛浪遊峽中嘗 < span
+
+
+class ="red" > 茶 < / span > & nbsp蔟蔟 < span class ="red" > 新 < / span > 英摘露光小江園裏火煎嘗吳僧漫說鴉山”
+
+< span
+style = "display:none;"
+id = "p61" > 春愁梅黄麥緑無歸處可得漂漂愛浪遊峽中嘗 < span
+
+
+class ="red" > 茶 < / span > @ @ 蔟蔟 < span class ="red" > 新 < / span > 英摘露光小江園裏火煎嘗吳僧漫說鴉山 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14802, '卷六百七十六','61','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',14802,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14804, '卷六百七十六','62','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14804, '卷六百七十六','62','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷六百七十六
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14804, '卷六百七十六','62','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“一作多無
+雨曉生塵草色嵐光日日 < span
+
+
+class ="red" > 新 < / span > 蒙頂 < span class ="red" > 茶 < / span > 畦千點露浣花牋紙一溪春楊雄宅在唯喬木杜甫”
+
+< span
+style = "display:none;"
+id = "p62" > 一作多無
+雨曉生塵草色嵐光日日 < span
+
+
+class ="red" > 新 < / span > 蒙頂 < span class ="red" > 茶 < / span > 畦千點露浣花牋紙一溪春楊雄宅在唯喬木杜甫 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14804, '卷六百七十六','62','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',14804,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14843, '卷六百七十七','63','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14843, '卷六百七十七','63','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷六百七十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14843, '卷六百七十七','63','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“郎宗人惠四藥宗人忽惠西山藥四味清 < span
+
+
+class ="red" > 新 < / span > 香助 < span class ="red" > 茶 < / span > 爽得心神便騎鶴何須燒得白朱砂題張衡廟遠俗”
+
+< span
+style = "display:none;"
+id = "p63" > 郎宗人惠四藥宗人忽惠西山藥四味清 < span
+
+
+class ="red" > 新 < / span > 香助 < span class ="red" > 茶 < / span > 爽得心神便騎鶴何須燒得白朱砂題張衡廟遠俗 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 14843, '卷六百七十七','63','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',14843,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15148, '卷六百九十','64','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15148, '卷六百九十','64','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷六百九十
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15148, '卷六百九十','64','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“天台王處士深隱天台不記秋琴臺長别一何愁 < span
+
+
+class ="red" > 茶 < / span > 煙巖外雲初起 < span class ="red" > 新 < / span > 月潭心釣未收映宇異花叢發好”
+
+< span
+style = "display:none;"
+id = "p64" > 天台王處士深隱天台不記秋琴臺長别一何愁 < span
+
+
+class ="red" > 茶 < / span > 煙巖外雲初起 < span class ="red" > 新 < / span > 月潭心釣未收映宇異花叢發好 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15148, '卷六百九十','64','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',15148,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15566, '卷七百八','65','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15566, '卷七百八','65','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷七百八
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15566, '卷七百八','65','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“桃花雪點多雖貴全假當場一顧恩尚書惠蠟面 < span
+
+
+class ="red" > 茶 < / span > 武夷春暖月初圓採摘 < span class ="red" > 新 < / span > 芽獻地仙飛鵲印成香蠟”
+
+< span
+style = "display:none;"
+id = "p65" > 桃花雪點多雖貴全假當場一顧恩尚書惠蠟面 < span
+
+
+class ="red" > 茶 < / span > 武夷春暖月初圓採摘 < span class ="red" > 新 < / span > 芽獻地仙飛鵲印成香蠟 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15566, '卷七百八','65','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',15566,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15605, '卷七百十','66','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15605, '卷七百十','66','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷七百十
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15605, '卷七百十','66','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“攏針羅截錦饒君侈爭及蒙茸煖避風貢餘秘色 < span
+
+
+class ="red" > 茶 < / span > 盞 & nbsp捩翠融青瑞色 < span class ="red" > 新 < / span > 陶成先得貢吾君巧剜明月染”
+
+< span
+style = "display:none;"
+id = "p66" > 攏針羅截錦饒君侈爭及蒙茸煖避風貢餘秘色 < span
+
+
+class ="red" > 茶 < / span > 盞 @ @ 捩翠融青瑞色 < span class ="red" > 新 < / span > 陶成先得貢吾君巧剜明月染 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15605, '卷七百十','66','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',15605,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15806, '卷七百二十三','67','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15806, '卷七百二十三','67','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷七百二十三
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15806, '卷七百二十三','67','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“鄠杜憶過梨栗墅瀟湘曽棹雪霜天華山僧别留 < span
+
+
+class ="red" > 茶 < / span > 鼎渭水人來鎖釣船東送西迎終幾考 < span class ="red" > 新 < / span > 詩覓得兩”
+
+< span
+style = "display:none;"
+id = "p67" > 鄠杜憶過梨栗墅瀟湘曽棹雪霜天華山僧别留 < span
+
+
+class ="red" > 茶 < / span > 鼎渭水人來鎖釣船東送西迎終幾考 < span class ="red" > 新 < / span > 詩覓得兩 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 15806, '卷七百二十三','67','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',15806,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16210, '卷七百四十七','68','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16210, '卷七百四十七','68','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷七百四十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16210, '卷七百四十七','68','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“白雲端閑登鍾阜林泉晚夢去沃洲風雨寒 < span
+
+
+class ="red" > 新 < / span > 試 < span class ="red" > 茶 < / span > 經煎有興舊嬰詩病捨終難常聞秋夕多無寐月在”
+
+< span
+style = "display:none;"
+id = "p68" > 白雲端閑登鍾阜林泉晚夢去沃洲風雨寒 < span
+
+
+class ="red" > 新 < / span > 試 < span class ="red" > 茶 < / span > 經煎有興舊嬰詩病捨終難常聞秋夕多無寐月在 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16210, '卷七百四十七','68','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',16210,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16301, '卷七百五十二','69','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16301, '卷七百五十二','69','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷七百五十二
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16301, '卷七百五十二','69','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“征西府裏日西斜獨試 < span
+
+
+class ="red" > 新 < / span > 爐自煮 < span class ="red" > 茶 < / span > 籬菊盡來低覆水塞鴻飛去遠連霞寂寥小雪閑中過班駁輕霜鬢”
+
+< span
+style = "display:none;"
+id = "p69" > 征西府裏日西斜獨試 < span
+
+
+class ="red" > 新 < / span > 爐自煮 < span class ="red" > 茶 < / span > 籬菊盡來低覆水塞鴻飛去遠連霞寂寥小雪閑中過班駁輕霜鬢 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16301, '卷七百五十二','69','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',16301,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16363, '卷七百五十五','70','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16363, '卷七百五十五','70','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷七百五十五
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16363, '卷七百五十五','70','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“衛姬君王偏屬詠七子盡搜奇和門下殷侍郎 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 二十韻暖吹入春園 < span class ="red" > 新 < / span > 芽競粲然才教鷹觜拆未放”
+
+< span
+style = "display:none;"
+id = "p70" > 衛姬君王偏屬詠七子盡搜奇和門下殷侍郎 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 二十韻暖吹入春園 < span class ="red" > 新 < / span > 芽競粲然才教鷹觜拆未放 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16363, '卷七百五十五','70','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',16363,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16363, '卷七百五十五','71','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16363, '卷七百五十五','71','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷七百五十五
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16363, '卷七百五十五','71','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“有圓捲紫筍
+正當鑽柳火遥想湧金泉
+陽羨 < span
+
+
+class ="red" > 茶 < / span > 山有金涉泉修貢時出 任道時 < span class ="red" > 新 < / span > 物須依古法煎”
+
+< span
+style = "display:none;"
+id = "p71" > 有圓捲紫筍
+正當鑽柳火遥想湧金泉
+陽羨 < span
+
+
+class ="red" > 茶 < / span > 山有金涉泉修貢時出 任道時 < span class ="red" > 新 < / span > 物須依古法煎 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16363, '卷七百五十五','71','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',16363,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16397, '卷七百五十七','72','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16397, '卷七百五十七','72','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷七百五十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16397, '卷七百五十七','72','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“葉雨鷺鷥飛破竹林煙時沽村酒臨軒酌擬摘 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 靠石煎”
+
+< span
+style = "display:none;"
+id = "p72" > 葉雨鷺鷥飛破竹林煙時沽村酒臨軒酌擬摘 < span
+
+
+class ="red" > 新 < / span > < span class ="red" > 茶 < / span > 靠石煎 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16397, '卷七百五十七','72','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',16397,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16981, '卷七百九十五','73','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16981, '卷七百九十五','73','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷七百九十五
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16981, '卷七百九十五','73','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“拜貢盈襟淚不進 < span
+
+
+class ="red" > 新 < / span > 芽是進心 常州舊貢陽羨 < span class ="red" > 茶 < / span > 僖宗幸蜀枳間關馳貢故有此句見常州志 鄭賨”
+
+< span
+style = "display:none;"
+id = "p73" > 拜貢盈襟淚不進 < span
+
+
+class ="red" > 新 < / span > 芽是進心 常州舊貢陽羨 < span class ="red" > 茶 < / span > 僖宗幸蜀枳間關馳貢故有此句見常州志 鄭賨 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 16981, '卷七百九十五','73','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',16981,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17641, '卷八百二十七','74','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17641, '卷八百二十七','74','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷八百二十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17641, '卷八百二十七','74','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“仙亦何别茆屋岸花中弄孫頭似雪扣舷得 < span
+
+
+class ="red" > 新 < / span > 詩 < span class ="red" > 茶 < / span > 煮桃花水㠔㠔數片帆去去殊未已仁政無不及乳”
+
+< span
+style = "display:none;"
+id = "p74" > 仙亦何别茆屋岸花中弄孫頭似雪扣舷得 < span
+
+
+class ="red" > 新 < / span > 詩 < span class ="red" > 茶 < / span > 煮桃花水㠔㠔數片帆去去殊未已仁政無不及乳 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17641, '卷八百二十七','74','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',17641,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17703, '卷八百三十','75','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17703, '卷八百三十','75','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷八百三十
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17703, '卷八百三十','75','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“宿禪師院身閑心亦然如此已多年語淡不著物 < span
+
+
+class ="red" > 茶 < / span > 香别有泉古衣和蘚衲 < span class ="red" > 新 < / span > 偈幾人傳時說秋歸夢孤”
+
+< span
+style = "display:none;"
+id = "p75" > 宿禪師院身閑心亦然如此已多年語淡不著物 < span
+
+
+class ="red" > 茶 < / span > 香别有泉古衣和蘚衲 < span class ="red" > 新 < / span > 偈幾人傳時說秋歸夢孤 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17703, '卷八百三十','75','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',17703,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17712, '卷八百三十','76','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17712, '卷八百三十','76','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷八百三十
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17712, '卷八百三十','76','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“牆道意 < span
+
+
+class ="red" > 新 < / span > 戒師慙匪什都講更勝詢桃熟多紅璺 < span class ="red" > 茶 < / span > 香有碧筋高宗多不寐終是夢中人寄赤松舒道士”
+
+< span
+style = "display:none;"
+id = "p76" > 牆道意 < span
+
+
+class ="red" > 新 < / span > 戒師慙匪什都講更勝詢桃熟多紅璺 < span class ="red" > 茶 < / span > 香有碧筋高宗多不寐終是夢中人寄赤松舒道士 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17712, '卷八百三十','76','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',17712,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17823, '卷八百三十七','77','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17823, '卷八百三十七','77','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷八百三十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17823, '卷八百三十七','77','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“多採爲蔬菜味極美也
+狖爭山果落空階閑擔 < span
+
+
+class ="red" > 茶 < / span > 器緣青障靜衲禪袍坐緑崖虚作 < span class ="red" > 新 < / span > 詩反招隱出來”
+
+< span
+style = "display:none;"
+id = "p77" > 多採爲蔬菜味極美也
+狖爭山果落空階閑擔 < span
+
+
+class ="red" > 茶 < / span > 器緣青障靜衲禪袍坐緑崖虚作 < span class ="red" > 新 < / span > 詩反招隱出來 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17823, '卷八百三十七','77','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',17823,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< li
+
+
+class ="ju-info" >
+
+< div
+
+
+class ="ju-info-shu" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17844, '卷八百三十七','78','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+全唐詩900卷
+< / div >
+< div
+
+
+class ="ju-info-juan" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17844, '卷八百三十七','78','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+
+卷八百三十七
+< / div >
+< div
+
+
+class ="ju-info-ju"  onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17844, '卷八百三十七','78','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+“裏聳樓臺師院高凌積翠開深竹杪聞殘磬盡一 < span
+
+
+class ="red" > 茶 < / span > 中見數帆來焚香只是看 < span class ="red" > 新 < / span > 律幽步猶疑損緑苔莫”
+
+< span
+style = "display:none;"
+id = "p78" > 裏聳樓臺師院高凌積翠開深竹杪聞殘磬盡一 < span
+
+
+class ="red" > 茶 < / span > 中見數帆來焚香只是看 < span class ="red" > 新 < / span > 律幽步猶疑損緑苔莫 < / span >
+
+< / div >
+< div
+
+
+class ="ju-info-ku" onClick="openReadPan_a('888','全唐詩900卷', '', '　清　', 19073, '清康熙四十四至四十六年刻本', '18103', 17844, '卷八百三十七','78','','false',1,'1','19073','0','（清）彭定求纂','（清）彭定求纂','清康熙四十四至四十六年揚州詩局刻後印本','','全唐詩900卷')" >
+
+（ 中國基本古籍庫 ）
+< / div >
+< div
+
+
+class ="ju-addMuti" >
+
+< img
+onClick = "addMultRead('全唐詩900卷','888','　清　',19073,'清康熙四十四至四十六年刻本','18103',17844,'false','1','19073','0')"
+title = "加入同屏"
+src = "/assets/img/ds_001.png" >
+< / div >
+< / li >
+
+< / ul >
+
+< !-- 举句结束 -->
+
+< / div >
+< / div >
+
+< style
+type = "text/css" >
+< !--
+.pagebox
+{height: 40px;
+font - size: 20
+px;
+line - height: 40
+px;
+font - weight: normal;
+border: 0
+px;
+border - bottom: 0
+px
+solid
+black;
+width: 300
+px;
+}
+.pagebox
+a: link
+{color:  # FF8402; text-decoration: none; font-size:20px; }
+.pagebox
+a: visited
+{color:  # FF8402; text-decoration: none; font-size:20px; }
+.pagebox
+a: active
+{color:  # FF8402; text-decoration: none; font-size:20px; }
+.pagebox
+a: hover
+{color:  # ff0000; text-decoration: none; font-size:20px; position: relative; right: 0px; top: 1px; }
+.info_t1
+{color:  # 000000; text-decoration: none; font-size:20px; }
+.info_t2
+{color:  # FF0000; text-decoration: none; font-size:20px; }
+.currNum
+{color:  # FF0000; text-decoration: none; font-size:20px; font-weight:800; }
+     -->
+< / style >
+    < table
+border = "0"
+align = "center"
+id = "pagebox"
+
+
+class ="pagebox" style="width:96%; position:relative; top:122px; " >
+
+< tr >
+< td
+align = "center"
+style = "padding-left:100px;" >
+< !--  第一页 -->
+
+< !-- begin -->
+
+< span
+
+
+class ="currNum" > 1 < / span > & nbsp;
+
+< !-- end -->
+
+< !--
+最末页 < a
+href = "/spring/soshen/search?tag=1&canshu=0&pageNo=1" > 1 < / a >
+< span
+
+
+class ="info" >
+
+< button
+onclick = "create_table();"
+
+
+class ="button button-primary button-rounded button-small" style="margin-left:100px;" > 保存 < / button >
+
+
+-->
+< span
+style = " margin-left:40px;color:#000; font-size:20px;line-height:20px;color:#FF8402;" > 共1頁 < / span >
+< / td >
+< td
+style = "width:250px;" > < span
+
+
+class ="info_t1" > 共 < span class ="info_t2" > 79 < / span >
+
+
+條
+
+< / span > < / td >
+< / tr >
+< / table >
+
+< style
+type = "text/css" >
+< !--
+
+.tail
+{color:  # 000000; font-size: 13px;
+
+ }
+.tail
+a
+{
+    text - decoration: none;
+font - size: 13
+px;
+color:
+# 000;
+}
+
+# tail_line{ background-color:#999;}
+-->
+< / style >
+< TABLE
+id = "copyright"
+width = "90%"
+height = "20"
+border = 0
+align = "center"
+cellPadding = 0
+cellSpacing = 0 >
+< tr > < td
+id = "tail_line"
+style = "height:2px; " > < / td > < / tr >
+< TR >
+< TD
+align = left
+vAlign = middle >
+< div
+align = "center"
+
+
+class ="tail" > 版權所有 北京愛如生數字化技術研究中心  Copyright © 2017 by Beijing Erudition Digital Research < a href="/researchRoom/index.html" target="_blank" > Center.< / a > & nbsp; & nbsp; < a href="https://beian.miit.gov.cn" > 京ICP备12023608号-9 < / a > < br >
+
+< / div > < / TD >
+< / TR >
+< / TABLE >
+
+< !-- 同屏开始margin: 0
+px
+auto;
+closeMark() -->
+< div
+id = "content2"
+style = "display:none; position:absolute; top:0px;  " >
+< !--
+< div
+id = "mark_set"
+style = "width:36px; height:110px; position:absolute; top:80px; right:2px;" >
+< img
+title = "同屏管理"
+style = "cursor:pointer;"
+onClick = "setMutidiv()"
+src = "/assets/img/mt_01.png"
+width = "36"
+height = "36" >
+< / div >
+-->
+< / div >
+< div
+id = "content2_1"
+style = "display:none; width:920px; height:472px;  position:absolute;" >
+
+< !--
+< div
+id = "mark_set"
+style = "width:36px; height:40px; position:absolute; top:80px; right:2px;" >
+< img
+title = "同屏管理"
+style = "cursor:pointer;"
+onClick = "setMutidiv()"
+src = "/assets/img/mt_01.png"
+width = "36"
+height = "36" >
+< / div >
+-->
+< div
+id = "mark_close"
+style = "width:20px; height:20px; position:absolute; top:8px; right:8px;" >
+< img
+title = "关闭"
+style = "cursor:pointer;"
+onClick = "closeMark()"
+src = "/assets/img/dele.png"
+width = "20"
+height = "20" >
+< / div >
+< div
+id = "module_list"
+style = "" >
+< !--begin
+of
+module_list -->
+
+< !--end
+of
+module_list -->
+< / div >
+< / div >
+< !-- 同屏结束 -->
+
+< div
+id = "setMutidiv"
+
+
+class ="s3" style="display:none; z-index:1000; " >
+
+< div
+
+
+class ="hot" > 同屏管理 < span style="display:inline-block; position:absolute; top:6px; right:6px; text-align:center; width:15px; height:15px; line-height:15px;" > < a title="關閉" href="javascript:hideMutidiv();" > X < / a > < / span > < / div >
+
+< div
+id = "smlistPan"
+style = " " >
+< ul
+id = "tt1" > < / ul >
+< / div >
+< / div >
+
+< div
+style = "display:none;" >
+
+< form
+id = "kuakuform"
+action = "/spring/front/search"
+method = "POST"
+target = "_self" >
+< input
+name = "skeyword"
+id = "kkeyword"
+type = "text" >
+< input
+name = "sgl"
+id = "kgl"
+type = "text" >
+< input
+name = "sglbk"
+id = "kglbk"
+type = "text" >
+< input
+name = "sbname"
+id = "kbname"
+type = "text" >
+< input
+name = "sauthor"
+id = "kauthor"
+type = "text" >
+< input
+name = "syear"
+id = "kyear"
+type = "text" >
+< input
+name = "sbanben"
+id = "kbanben"
+type = "text" >
+< input
+name = "sprod"
+id = "kprod"
+value = ""
+type = "text" >
+< input
+name = "page"
+id = "kpage"
+type = "text" >
+
+< input
+name = "sbookid"
+id = "kbookid"
+value = ""
+type = "text" >
+< input
+name = "sset"
+id = "sset"
+value = "0"
+type = "text" >
+
+< input
+name = "num"
+id = "num"
+value = "0"
+type = "text" >
+< / form >
+
+< form
+id = "rform"
+action = "/spring/front/jumpread"
+method = "POST"
+target = "_blank" >
+< input
+name = "cv"
+id = "cv"
+type = "text" >
+< / form >
+< !-- 跨库选择开始 -->
+< div
+id = "content" >
+< div
+id = "content1" > < / div >
+< div
+
+
+class ="popModal_footer" >
+
+< div
+style = "position:absolute;" >
+< label
+for ="gl" style="display: inline;font-weight:normal" >
+< input
+id = "igl"
+type = "checkbox"
+value = "0"
+checked
+style = "height:13px; width:13px; " >
+< span
+style = "margin-left:-5px;" > 關聯異體字 < / span >
+< / label >
+< / div >
+
+< button
+onClick = "seleAllProd()"
+type = "button"
+
+
+class ="button button-primary button-rounded button-tiny" > 全选 < / button >
+
+< button
+onClick = "seleFan()"
+type = "button"
+
+
+class ="button button-primary button-rounded button-tiny" > 反选 < / button >
+
+< / div >
+< / div >
+
+< !-- 跨库选择结束 -->
+< / div >
+
+< script >
+
+var
+gl_c = '1';
+var
+gl_bk = '0';
+var
+search_tp = '2';
+
+var
+kkmm = '';
+
+var
+qw_url = "/spring/front/search";
+var
+tm_url = "/spring/front/mutitmsearch";
+var
+ec_url = "/spring/front/mutiercisearch";
+
+var
+shunei_flag = '1'; //
+
+$(document).ready(function()
+{
+
+    orderByBook = gl_bk; // alert(orderByBook);
+
+var
+w = $(window).width(); // 浏览器当前窗口可视区域宽度
+var
+h = $(window).height(); // 浏览器当前窗口可视区域高度
+
+var
+head_h = $("#container_head").height();
+var
+search_h = $('#search_pan').height();
+// var
+dh_h = $("#table_head").height();
+
+var
+tail_h = $("#copyright").height();
+var
+pagebox_h = $("#pagebox").height();
+
+h = h - head_h - tail_h - search_h - pagebox_h - 50;
+// h = h - tail_h - search_h - pagebox_h - 15;
+// alert(h);
+// $("#mm").height(h);
+
+$("#mm").css("min-height", h);
+
+< !--   新增加 -->
+initSearchBox();
+
+< !--   新增加 -->
+
+if (gl_bk == '1'){
+$("#rjvju").prop('checked', false);
+$("#rshu").prop('checked', true);
+}
+else {
+$("#rjvju").prop('checked', true);
+$("#rshu").prop('checked', false);
+}
+
+var k1 = parseInt(w / book_w);
+k1 = k1 * (book_w+5);
+// alert(k1);
+$("#bk_pan").width(k1);
+
+});
+< / script >
+
+< !--search
+beigin -->
+
+< script
+type = "text/javascript"
+src = "/js/dragresize.js" > < / script >
+< script
+src = "/js/dragresize_append.js" > < / script >
+< link
+href = "/assets/search/box.css"
+rel = "stylesheet" >
+< link
+type = "text/css"
+rel = "stylesheet"
+href = "/assets/popModal.css" >
+< link
+type = "text/css"
+rel = "stylesheet"
+href = "/css/mutiread.css" >
+< script
+src = "/js/smenue_toolpan.js" > < / script >
+< script
+src = "/js/smenue.js" > < / script >
+< script
+src = "/assets/popModal.js" > < / script >
+< script
+src = "/assets/search/box.js" > < / script >
+< script
+src = "/js/tableExporter.js" > < / script >
+< script
+src = "/js/jiaoning.js" > < / script >
+< script
+src = "/js/sxj.js" > < / script >
+
+< script
+src = "/layer/layer.js" > < / script >
+< !--search
+end -->
+
+< !--
+< div
+style = "width:46px; height:auto; padding: 5px 1px 5px 1px; position:fixed; top:150px; right:5px; text-align:center;" >
+< button
+title = "同屏閱讀"
+onclick = "openMultReadPan()"
+
+
+class ="button button-primary button-rounded button-public" style="margin-left:0px;" >
+
+< img
+src = "/assets/img/ds_003.png"
+width = "34"
+height = "20" >
+< / button >
+< / div >
+-->
+< div
+
+
+class ="side-bar" >
+
+< a
+target = "_self"
+title = "同屏閱讀"
+href = "javascript:openMultRead();"
+
+
+class ="icon-muti" > 同屏閱讀 < / a >
+
+< a
+target = "_blank"
+title = "用戶留言"
+href = "/spring/front/advisory/ad_list"
+
+
+class ="icon-chat" > 用戶留言 < / a >
+
+< a
+target = "_blank"
+title = "QQ在綫諮詢"
+href = "http://wpa.qq.com/msgrd?v=3&uin=2413359475&site=qq&menu=yes"
+
+
+class ="icon-qq" > QQ在綫諮詢 < / a >
+
+< a
+title = "E-mail"
+target = "_blank"
+href = "mailto:eruson@163.com"
+
+
+class ="icon-mail" > mail < / a >
+
+< !--
+< a
+target = "_blank"
+href = ""
+
+
+class ="icon-chat" > 微信 < div class ="chat-tips" > < i > < / i > < img style="width:138px;height:138px;" src="/assets/img/weixin.jpg" alt="微信订阅号" > < / div > < / a >
+
+
+-->
+< / div >
+
+< / body >
+
+< link
+rel = "stylesheet"
+type = "text/css"
+href = "/css/gdt-style.css" >
+< !-- 登录校验公共函数 -->
+< script
+src = "/js/pub_tool/valilogin.js" > < / script >
+
+< style >
+# copyright{position:relative; top:122px;}
+
+< / style >
+< / html>
